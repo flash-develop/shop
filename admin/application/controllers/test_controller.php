@@ -72,12 +72,8 @@ class Categories extends CI_Controller {
 
 	public function ajaxRequestGetCategories()
 	{
-<<<<<<< HEAD
 		$return_data->category = $this->test_model->getCategory($post['id']);
 
-=======
-		$return_data->category = $this->categories_model->getCategory($post['id']);
->>>>>>> parent of a2091c7... test
 		echo json_encode($return_data); 
 
 		$post = $this->input->post();

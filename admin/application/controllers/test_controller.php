@@ -20,18 +20,6 @@ class Categories extends CI_Controller {
 	{
 		$html = '<ul class="'.$class_name.'">';
 		
-		foreach ($categories as $category) {
-			$glyphs = 	'<a cat_id="' . $category['id'] . '" class="color-black edit-category" href="#" style="text-decoration: none">
-						<span class="glyphicon glyphicon-pencil"></span>
-					</a>
-					<a cat_id="' . $category['id'] . '" class="delete-category color-black" href="#" style="text-decoration: none">
-						<span class="glyphicon glyphicon-remove"></span>
-					</a>';
-			$html .= '<li>' . $category['title'] . $glyphs . '</li>'; 
-			if (count($category['child_categories'])) {
-				$html .= $this->prepareHtmlForCategoriesList($category['child_categories'], 'child_category');
-			}
-		}
 		$html .= '</ul>';
 		return $html;
 	}

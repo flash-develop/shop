@@ -17,13 +17,14 @@ class Categories extends CI_Controller {
     }
  
     public function index()
-	{
-		$categories = $this->categories_model->getCategories();
+	{//test changes
+		
 
-		$data['html'] = $this->prepareHtmlForCategoriesList($categories, 'parent_category');
 
-		$data['htmlSelect'] = $this->prepareHtmlForCategoriesSelect($categories);
 
+
+
+		
 		$data['page'] = 'categories/index';
 		$this->load->view('main_tpl', $data);
 	}

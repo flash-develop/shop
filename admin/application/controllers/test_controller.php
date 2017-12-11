@@ -79,6 +79,7 @@ class Categories extends CI_Controller {
 		$post = $this->input->post();
 
 		$return_data = new stdClass();
+		var_dump(expression);
 	}
 
 	public function ajaxRequestDeleteCategory()

@@ -72,11 +72,12 @@ class Categories extends CI_Controller {
 
 	public function ajaxRequestGetCategories()
 	{
+		$return_data->category = $this->categories_model->getCategory($post['id']);
+		echo json_encode($return_data); 
+
 		$post = $this->input->post();
 
 		$return_data = new stdClass();
-		$return_data->category = $this->categories_model->getCategory($post['id']);
-		echo json_encode($return_data); 
 	}
 
 	public function ajaxRequestDeleteCategory()

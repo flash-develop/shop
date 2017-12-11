@@ -97,7 +97,6 @@ class Categories extends CI_Controller {
 		$this->categories_model->create($post);
 		redirect('categories/index');
 	}
-
 }
 
 

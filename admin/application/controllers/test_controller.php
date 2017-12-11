@@ -16,7 +16,16 @@ class Categories extends CI_Controller {
 		}
     }
  
-    public function index() {
+    public function index() 
+    {
+
+    	parent::__construct();
+
+		$is_logged_in = $this->users_model->isLoggedIn();
+
+		if (!$is_logged_in) {
+			redirect('users');
+		}
 
 		$data['page'] = 'categories/index';
 		$this->load->view('main_tpl', $data);

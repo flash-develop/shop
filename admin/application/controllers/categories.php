@@ -91,7 +91,7 @@ class Categories extends CI_Controller {
 	}
 
 	public function create()
-	{//var_dump('!!!');exit;
+	{
 		$post = $this->input->post();
 
 		$this->categories_model->create($post);

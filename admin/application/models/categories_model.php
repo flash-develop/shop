@@ -107,12 +107,10 @@ class Categories_model extends CI_Model {
 			$q = "INSERT INTO categories (
 				title,
 				description
-				parent_id
 				)
 				VALUES (
 				'{$post['title']}',
-				'{$post['description']}',
-				DEFAULT
+				'{$post['description']}'
 				)
 				";
 			$this->db->query($q);

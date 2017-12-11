@@ -4,7 +4,7 @@
 
 <button type="button" class="add-btn btn btn-primary">Добавить категорию</button>
 
-<form id="form-universal" action="<?php echo base_url(); ?>categories/update" method="post">
+<form action="<?php echo base_url(); ?>categories/update" method="post">
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -25,7 +25,7 @@
             <div class="form-group">
                 <label for="category-select">Родительская категория</label>
                 <select class="form-control" name="parent_id" id="category-select">
-                    <option id="no-val" value="0">&nbsp&nbsp&nbspНет</option>
+                    <option value="0">&nbsp&nbsp&nbspНет</option>
                     <?php echo $htmlSelect; ?>
                 </select>
             </div>

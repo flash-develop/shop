@@ -4,7 +4,7 @@
     <div class="col-md-4 col-md-offset-4">
         <div class="text-center-margin-bottom margin-10">
             <button type="button" class="add-btn btn btn-primary">Добавить категорию</button>
-        </div>
+        </div> 
         <?php echo $html; ?>
     </div>
 </div>  

@@ -98,10 +98,12 @@
         });
       });
 
-      $(".add-btn").click(function() {
+       $(".add-btn").click(function() {
+        $('#category-select [value=0]').attr('selected', 'selected');
+        $('#title, #description, #category-select').attr('value', '');
         $("#myModal").modal('show');
         $("#myModalLabel").text('Добавить новую категорию');
-        $('form').attr('action', '<?php echo base_url(); ?>categories/create')
+        $('form').attr('action', '<?php echo base_url(); ?>categories/create');
       });
     });
 </script>

@@ -33,13 +33,13 @@ class Categories extends CI_Controller {
 		$html = '<ul class="'.$class_name.' list-group">';
 		
 		foreach ($categories as $category) {
-			$glyphs = 	'<a cat_id="' . $category['id'] . '" class="color-black edit-category" href="#" style="text-decoration: none">
+			$glyphs = 	'<div class="glyph-wrapper"><a cat_id="' . $category['id'] . '" class="color-black edit-category" href="#" style="text-decoration: none">
 						<span class="glyphicon glyphicon-pencil"></span>
 					</a>
 					<a cat_id="' . $category['id'] . '" class="delete-category color-black" href="#" style="text-decoration: none">
 						<span class="glyphicon glyphicon-remove"></span>
-					</a>';
-			$html .= '<li class="list-group-item">' . $category['title'] . $glyphs . '</li>'; 
+					</a></div>';
+			$html .= '<li class="list-group-item list-group-item-cust"><span class="list-group-addon glyphicon glyphicon-calendar"></span><span class="list-group-addon glyphicon glyphicon-calendar"></span>' . $category['title'] . $glyphs . '</li>'; 
 			if (count($category['child_categories'])) {
 				$html .= $this->prepareHtmlForCategoriesList($category['child_categories'], 'child_category');
 			}

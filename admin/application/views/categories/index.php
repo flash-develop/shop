@@ -1,5 +1,14 @@
 <h1>Категории</h1>
 
+<ul class="list-group">
+    <li class="list-group-item-cust list-group-item"><span class="list-group-addon glyphicon glyphicon-calendar"></span>
+        &nbsp;8th March 2014</li>
+    <li class="list-group-item-cust list-group-item"><span class="list-group-addon glyphicon glyphicon-time"></span>
+        &nbsp;10:00</li>
+    <li class="list-group-item-cust list-group-item"><span class="list-group-addon glyphicon glyphicon-flag"></span>
+        &nbsp;Location</li>
+</ul>
+
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
         <?php echo $html; ?>

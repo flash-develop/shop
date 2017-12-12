@@ -15,8 +15,8 @@
 	margin-bottom: 20px;
 }
 
-.margin-top-10 {
-	margin-top: 10px;
+.glyph-wrapper {
+
 }
 
 .strong-text {
@@ -104,4 +104,21 @@ ul.child_category {
 	opacity: 0.5;
 	background: #333 url('../images/loading.gif') no-repeat center center;
 	display: none;
+}
+
+.list-group-item-cust {
+	padding-left: 0px;
+}
+
+.list-group-addon {
+  padding: 10px 10px;
+  font-size: 15px;
+  display:inline;
+  font-weight: normal;
+  line-height: 1;
+  color: #555555;
+  text-align: center;
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
 }

@@ -6,6 +6,10 @@
       margin: 10px;
 }
 
+.margin-bottom {
+	margin-bottom: 30px;
+}
+
 .navbar .navbar-nav > li > a {
     line-height: 45px;
 }
@@ -107,11 +111,13 @@ ul.child_category {
 }
 
 .list-group-item-cust {
-	padding-left: 0px;
+	padding-left: 5px;
+	padding-top: 10px;
+	margin-top: 5px;
 }
 
 .list-group-addon {
-  padding: 10px 10px;
+  padding: 5px 5px;
   font-size: 15px;
   display:inline;
   font-weight: normal;

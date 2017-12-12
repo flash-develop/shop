@@ -1,20 +1,11 @@
-<h1>Категории</h1>
+<h1 class="text-center-margin-bottom">Категории</h1>
 
-<ul class="list-group">
-    <li class="list-group-item-cust list-group-item"><span class="list-group-addon glyphicon glyphicon-calendar"></span>
-        &nbsp;8th March 2014</li>
-    <li class="list-group-item-cust list-group-item"><span class="list-group-addon glyphicon glyphicon-time"></span>
-        &nbsp;10:00</li>
-    <li class="list-group-item-cust list-group-item"><span class="list-group-addon glyphicon glyphicon-flag"></span>
-        &nbsp;Location</li>
-</ul>
-
-<div class="row">
+<div class="row margin-bottom">
     <div class="col-md-4 col-md-offset-4">
-        <?php echo $html; ?>
         <div class="text-center-margin-bottom margin-10">
             <button type="button" class="add-btn btn btn-primary">Добавить категорию</button>
         </div>
+        <?php echo $html; ?>
     </div>
 </div>  
 

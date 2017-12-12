@@ -70,7 +70,11 @@
             success: function(response){
                 $('#title').attr('value', response.category.title);
                 $('#description').attr('value', response.category.description);
-                $('#category-select').val(response.category.id).attr('value', response.category.id);
+                if (!response.category.parent_id) {
+                    $('#category-select [value=0]').attr('selected', 'selected');
+                } else {
+                    $('#category-select').val(response.category.parent_id).attr('value', response.category.parent_id);
+                }
                 $('#category_id').attr('value', id);
                 $('.preloader').hide();
                 $("#myModal").modal('show');
@@ -113,19 +117,22 @@
 
         $(".submit-btn").click(function() {
             if (!$('#title').val()) {
+                $('.error-description').text('');
+                $('.form-group-description').removeClass('has-error');
                 $('.form-group-title').addClass('has-error');
                 $('.error-title').text('Введите название категории');
                 return;
             }
             if (!$('#description').val()) {
+                $('.error-title').text('');
+                $('.form-group-title').removeClass('has-error');
                 $('.form-group-description').addClass('has-error');
                 $('.error-description').text('Введите описание категории');
                 return;
             }
-            alert('Ok');
+            $(".submit-btn").attr('type', 'submit');
+            $('form').attr('action', '<?php echo base_url(); ?>categories/create');
         });
-
-        //$('form').attr('action', '<?php echo base_url(); ?>categories/create');
       });
     });
 </script>

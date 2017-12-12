@@ -3,7 +3,7 @@
 <?php echo $html; ?>
 
 <button type="button" class="add-btn btn btn-primary">Добавить категорию</button>
-
+  
 <form action="<?php echo base_url(); ?>categories/update" method="post">
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">

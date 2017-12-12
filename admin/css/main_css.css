@@ -15,12 +15,20 @@
 	margin-bottom: 20px;
 }
 
+.margin-top-10 {
+	margin-top: 10px;
+}
+
 .strong-text {
 	font-weight: bold;
 }
 
 .display-none {
 	display: none;
+}
+
+.list-group {
+	margin-bottom: 0px;
 }
 
 .categories-checkboxes {

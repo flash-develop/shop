@@ -22,10 +22,16 @@
             <div class="form-group">
                 <label for="title">Название</label>
                 <input type="text" name="title" class="form-control" value="" id="title">
+                <div class="has-error">
+                    <span class="help-block"><strong class="error-title"></strong></span>
+                </div>
             </div>
                 <div class="form-group">
                 <label for="description">Описание</label>
                 <input type="text" name="description" class="form-control" value="" id="description">
+                <div class="has-error">
+                    <span class="help-block"><strong class="error-description"></strong></span>
+                </div>
             </div>
             <div class="form-group">
                 <label for="category-select">Родительская категория</label>
@@ -103,7 +109,12 @@
         $('#title, #description, #category-select').attr('value', '');
         $("#myModal").modal('show');
         $("#myModalLabel").text('Добавить новую категорию');
-        $('form').attr('action', '<?php echo base_url(); ?>categories/create');
+
+        if ($('#title, #description').val() = '') {
+
+        }
+
+        //$('form').attr('action', '<?php echo base_url(); ?>categories/create');
       });
     });
 </script>

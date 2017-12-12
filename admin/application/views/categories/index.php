@@ -19,14 +19,14 @@
           </div>
           <div class="modal-body">
             <input type="text" name="category_id" hidden value="" id="category_id">
-            <div class="form-group">
+            <div class="form-group form-group-title">
                 <label for="title">Название</label>
                 <input type="text" name="title" class="form-control" value="" id="title">
                 <div class="has-error">
                     <span class="help-block"><strong class="error-title"></strong></span>
                 </div>
             </div>
-                <div class="form-group">
+                <div class="form-group form-group-description">
                 <label for="description">Описание</label>
                 <input type="text" name="description" class="form-control" value="" id="description">
                 <div class="has-error">
@@ -113,10 +113,12 @@
 
         $(".submit-btn").click(function() {
             if (!$('#title').val()) {
+                $('.form-group-title').addClass('has-error');
                 $('.error-title').text('Введите название категории');
                 return;
             }
             if (!$('#description').val()) {
+                $('.form-group-description').addClass('has-error');
                 $('.error-description').text('Введите описание категории');
                 return;
             }

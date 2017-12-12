@@ -98,7 +98,3 @@ class Categories extends CI_Controller {
 		redirect('categories/index');
 	}
 }
-
-
-
-

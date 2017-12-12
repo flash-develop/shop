@@ -44,7 +44,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
             <a class='delete_image' href="#">
-                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <button type="submit" class="btn btn-primary submit-btn">Сохранить</button>
             </a>
           </div>
         </div>
@@ -109,10 +109,19 @@
         $('#title, #description, #category-select').attr('value', '');
         $("#myModal").modal('show');
         $("#myModalLabel").text('Добавить новую категорию');
+        $(".submit-btn").attr('type', 'button');
 
-        if ($('#title, #description').val() = '') {
-
-        }
+        $(".submit-btn").click(function() {
+            if (!$('#title').val()) {
+                $('.error-title').text('Введите название категории');
+                return;
+            }
+            if (!$('#description').val()) {
+                $('.error-description').text('Введите описание категории');
+                return;
+            }
+            alert('Ok');
+        });
 
         //$('form').attr('action', '<?php echo base_url(); ?>categories/create');
       });

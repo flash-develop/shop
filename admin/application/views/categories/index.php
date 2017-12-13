@@ -61,7 +61,7 @@
         var data = {
             "id": id
         }
-
+//------------------------TODO нельзя сделать родительской дочернюю категорию-----------------------
         $.ajax({
             type: 'POST',
             url: base_url+'categories/ajaxRequestGetCategories',
@@ -73,7 +73,7 @@
                 if (!response.category.parent_id) {
                     $('#category-select [value=0]').attr('selected', 'selected');
                 } else {
-                    $('#category-select').val(response.category.parent_id).attr('value', response.category.parent_id);
+                    $('#category-select [value='+response.category.parent_id+']').attr('selected', 'selected');
                 }
                 $('#category_id').attr('value', id);
                 $('.preloader').hide();

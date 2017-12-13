@@ -54,8 +54,10 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $( "#sortable" ).sortable({
-            revert: true
+  
+        $("#sortable ul").sortable({
+                connectWith: "#sortable ul",
+                placeholder: "ui-state-highlight"
         });
 
 

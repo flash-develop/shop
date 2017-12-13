@@ -39,7 +39,7 @@ class Categories extends CI_Controller {
 					<a cat_id="' . $category['id'] . '" class="delete-category color-black" href="#" style="text-decoration: none">
 						<span class="list-group-addon glyphicon glyphicon-remove"></span>
 					</a>';
-			$html .= '<li class="ui-state-default list-group-item list-group-item-cust">' . $glyphs . $category['title'] . '</li>'; 
+			$html .= '<li class="list-group-item list-group-item-cust">' . $glyphs . $category['title'] . '</li>'; 
 			if (count($category['child_categories'])) {
 				$html .= $this->prepareHtmlForCategoriesList($category['child_categories'], 'child_category');
 			}

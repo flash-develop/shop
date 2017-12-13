@@ -54,6 +54,13 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        $( "#sortable" ).sortable({
+            revert: true
+        });
+
+
+
+
       $(".edit-category").click(function() {
         
         $('.preloader').show();

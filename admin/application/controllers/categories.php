@@ -30,7 +30,7 @@ class Categories extends CI_Controller {
 
 	public function prepareHtmlForCategoriesList($categories, $class_name)
 	{	
-		$html = '<ul id="sortable" class="'.$class_name.' list-group">';
+		$html = '<div id="sortable"><ul class="'.$class_name.' list-group">';
 		
 		foreach ($categories as $category) {
 			$glyphs = 	'<a cat_id="' . $category['id'] . '" class="color-black edit-category" href="#" style="text-decoration: none">
@@ -44,7 +44,7 @@ class Categories extends CI_Controller {
 				$html .= $this->prepareHtmlForCategoriesList($category['child_categories'], 'child_category');
 			}
 		}
-		$html .= '</ul>';
+		$html .= '</ul></div>';
 		return $html;
 	}
 

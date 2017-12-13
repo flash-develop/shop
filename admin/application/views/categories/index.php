@@ -9,7 +9,7 @@
     </div>
 </div>  
 
-<form action="<?php echo base_url(); ?>categories/update" method="post">
+<form method="post">
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -55,13 +55,14 @@
 <script type="text/javascript">
     $(document).ready(function(){
       $(".edit-category").click(function() {
+        
         $('.preloader').show();
         var id = $(this).attr('cat_id');
 
         var data = {
             "id": id
         }
-//------------------------TODO нельзя сделать родительской дочернюю категорию-----------------------
+
         $.ajax({
             type: 'POST',
             url: base_url+'categories/ajaxRequestGetCategories',
@@ -76,6 +77,7 @@
                     $('#category-select [value='+response.category.parent_id+']').attr('selected', 'selected');
                 }
                 $('#category_id').attr('value', id);
+                $('form').attr('action', base_url + 'categories/update');
                 $('.preloader').hide();
                 $("#myModal").modal('show');
             },
@@ -110,30 +112,37 @@
 
        $(".add-btn").click(function() {
         $('#category-select [value=0]').attr('selected', 'selected');
-        $('#title, #description, #category-select').attr('value', '');
+        $('#title, #description').attr('value', '');
+        $('form').attr('action', base_url + 'categories/create');
         $("#myModal").modal('show');
         $("#myModalLabel").text('Добавить новую категорию');
-        $(".submit-btn").attr('type', 'button');
+      });
 
-        $(".submit-btn").click(function() {
-            if (!$('#title').val()) {
-                $('.error-description').text('');
-                $('.form-group-description').removeClass('has-error');
+       $(".submit-btn").click(function() {
+            $('.form-group-description').removeClass('has-error');
+            $('.form-group-title').removeClass('has-error');
+
+            $('.error-description').text('');
+            $('.error-title').text('');
+
+            var is_error = '0';
+
+            if ($('#title').val() == '') {
                 $('.form-group-title').addClass('has-error');
                 $('.error-title').text('Введите название категории');
-                return;
+                is_error = '1';
             }
-            if (!$('#description').val()) {
-                $('.error-title').text('');
-                $('.form-group-title').removeClass('has-error');
+            if ($('#description').val() == '') {  
                 $('.form-group-description').addClass('has-error');
                 $('.error-description').text('Введите описание категории');
-                return;
+                is_error = '1';
             }
-            $(".submit-btn").attr('type', 'submit');
-            $('form').attr('action', '<?php echo base_url(); ?>categories/create');
+
+            if(is_error == '1') {
+                return false;
+            }
+            
         });
-      });
     });
 </script>
 

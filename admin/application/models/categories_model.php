@@ -116,31 +116,6 @@ class Categories_model extends CI_Model {
 		";
 		$this->db->query($q);
 		return true;
-
-		/*$par_id = "'{$post['parent_id']}'";
-		$where = ", " . $par_id;
-
-		if (!$post['parent_id']) {
-			$where = '';
-			$par_id = '';
-		} else {
-			$where = ', parent_id';
-			$par_id = ", '{$post['parent_id']}'";
-		}
-
-		$q = "INSERT INTO categories (
-				title,
-				description
-				{$where}
-				)
-				VALUES (
-				'{$post['title']}',
-				'{$post['description']}'
-				{$par_id}
-				)
-				";
-				var_dump($q);exit;*/
-		
 	}
 
 }

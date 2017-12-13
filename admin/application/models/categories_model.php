@@ -72,16 +72,18 @@ class Categories_model extends CI_Model {
 
 	function update($post)
 	{
-		$where = 'parent_id = DEFAULT';
+
+		$set = 'parent_id = DEFAULT';
+
 		if ($post['parent_id']) {
-			$where = "parent_id = '{$post['parent_id']}'";
+			$set = "parent_id = '{$post['parent_id']}'";
 		}
 
 		$q = "UPDATE categories 
 				SET 
 				title = '{$post['title']}',
 				description = '{$post['description']}',
-				{$where}
+				{$set}
 				WHERE id = '{$post['category_id']}'
 			";
 		$this->db->query($q);
@@ -90,24 +92,32 @@ class Categories_model extends CI_Model {
 
 	function create($post)
 	{
+		$field = '';
+		$value = '';
 
-		
-
-		/*if (!$post['parent_id']) {
-			$q = "INSERT INTO categories (
-				title,
-				description
-				)
-				VALUES (
-				'{$post['title']}',
-				'{$post['description']}'
-				)
-				";
-			$this->db->query($q);
-			return true;
+		if ($post['parent_id']) {
+			$field = ', parent_id';
+			$value = ', ' . $post['parent_id'];
 		}
 
-		$par_id = "'{$post['parent_id']}'";
+		$q = "
+			INSERT INTO categories 
+			(
+				title,
+				description
+				{$field}
+			)
+			VALUES 
+			(
+				'{$post['title']}',
+				'{$post['description']}'
+				'{$value}'
+			)
+		";
+		$this->db->query($q);
+		return true;
+
+		/*$par_id = "'{$post['parent_id']}'";
 		$where = ", " . $par_id;
 
 		if (!$post['parent_id']) {
@@ -116,7 +126,7 @@ class Categories_model extends CI_Model {
 		} else {
 			$where = ', parent_id';
 			$par_id = ", '{$post['parent_id']}'";
-		}*/
+		}
 
 		$q = "INSERT INTO categories (
 				title,
@@ -129,9 +139,8 @@ class Categories_model extends CI_Model {
 				{$par_id}
 				)
 				";
-				var_dump($q);exit;
-		$this->db->query($q);
-		return true;
+				var_dump($q);exit;*/
+		
 	}
 
 }

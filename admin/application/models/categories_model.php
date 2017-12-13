@@ -97,7 +97,7 @@ class Categories_model extends CI_Model {
 
 		if ($post['parent_id']) {
 			$field = ', parent_id';
-			$value = ', ' . $post['parent_id'];
+			$value = ", '{$post['parent_id']}'";
 		}
 
 		$q = "
@@ -111,7 +111,7 @@ class Categories_model extends CI_Model {
 			(
 				'{$post['title']}',
 				'{$post['description']}'
-				'{$value}'
+				{$value}
 			)
 		";
 		$this->db->query($q);

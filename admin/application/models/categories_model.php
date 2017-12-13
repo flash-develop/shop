@@ -72,28 +72,16 @@ class Categories_model extends CI_Model {
 
 	function update($post)
 	{
-		/*if (!$post['parent_id']) {
-			$q = "UPDATE categories 
-				SET 
-				title = '{$post['title']}',
-				description = '{$post['description']}',
-				parent_id = DEFAULT
-				WHERE id = '{$post['category_id']}'
-			";
-			$this->db->query($q);
-			return true;
-		}*/
-
-		$where = 'parent_id = DEFAULT';
+		$set = 'parent_id = DEFAULT';
 		if ($post['parent_id']) {
-			$where = "parent_id = '{$post['parent_id']}'";
+			$set = "parent_id = '{$post['parent_id']}'";
 		}
 
 		$q = "UPDATE categories 
 				SET 
 				title = '{$post['title']}',
 				description = '{$post['description']}',
-				{$where}
+				{$set}
 				WHERE id = '{$post['category_id']}'
 			";
 		$this->db->query($q);
@@ -102,31 +90,29 @@ class Categories_model extends CI_Model {
 
 	function create($post)
 	{
-		if (!$post['parent_id']) {
-			$q = "INSERT INTO categories (
-				title,
-				description
-				)
-				VALUES (
-				'{$post['title']}',
-				'{$post['description']}'
-				)
-				";
-			$this->db->query($q);
-			return true;
+		$field = '';
+		$value = '';
+
+		if ($post['parent_id']) {
+			$field = ', parent_id';
+			$value = ', ' . $post['parent_id'];
 		}
 
-		$q = "INSERT INTO categories (
+		$q = "
+			INSERT INTO categories 
+			(
 				title,
-				description,
-				parent_id
-				)
-				VALUES (
+				description
+				{$field}
+			)
+			VALUES 
+			(
 				'{$post['title']}',
-				'{$post['description']}',
-				'{$post['parent_id']}'
-				)
-				";
+				'{$post['description']}'
+				'{$value}'
+			)
+		";
+
 		$this->db->query($q);
 		return true;
 	}

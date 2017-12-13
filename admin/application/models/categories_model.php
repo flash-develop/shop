@@ -69,16 +69,10 @@ class Categories_model extends CI_Model {
 		return true;
 	}
 
-	function add($id)
-	{
-		$q = "DELETE FROM categories WHERE id = '{$id}'";
-		$this->db->query($q);
-		return true;
-	}
 
 	function update($post)
 	{
-		if (!$post['parent_id']) {
+		/*if (!$post['parent_id']) {
 			$q = "UPDATE categories 
 				SET 
 				title = '{$post['title']}',
@@ -88,13 +82,18 @@ class Categories_model extends CI_Model {
 			";
 			$this->db->query($q);
 			return true;
+		}*/
+
+		$where = 'parent_id = DEFAULT';
+		if ($post['parent_id']) {
+			$where = "parent_id = '{$post['parent_id']}'";
 		}
 
 		$q = "UPDATE categories 
 				SET 
 				title = '{$post['title']}',
 				description = '{$post['description']}',
-				parent_id = '{$post['parent_id']}'
+				{$where}
 				WHERE id = '{$post['category_id']}'
 			";
 		$this->db->query($q);
@@ -119,14 +118,13 @@ class Categories_model extends CI_Model {
 
 		$q = "INSERT INTO categories (
 				title,
-				description
+				description,
 				parent_id
 				)
 				VALUES (
 				'{$post['title']}',
 				'{$post['description']}',
 				'{$post['parent_id']}'
-				DEFAULT
 				)
 				";
 		$this->db->query($q);

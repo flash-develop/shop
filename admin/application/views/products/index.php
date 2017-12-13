@@ -65,7 +65,9 @@
 				</td>
 				<td>
 					<?php if($each_product->img_name && file_exists($this->config->item('upload_path') . $each_product->img_name)) { ?>
-						<img src="<?php echo base_url(); ?>images/<?php echo $each_product->img_name; ?>" width="40">
+						<a data-lightbox="product-image-<?php echo $each_product->product_id; ?>" href="<?php echo base_url(); ?>images/<?php echo $each_product->img_name; ?>">
+							<img src="<?php echo base_url(); ?>images/<?php echo $each_product->img_name; ?>" width="40">
+						</a>
 					<?php } else { ?>
 						<img src="<?php echo base_url(); ?>images/placeholder.png" width="40">
 					<?php } ?>

@@ -5,9 +5,17 @@
         <div class="text-center-margin-bottom margin-10">
             <button type="button" class="add-btn btn btn-primary">Добавить категорию</button>
         </div>
-        <?php echo $html; ?>
+        <div id="sortable">
+            <?php echo $html; ?>
+        </div>
     </div>
-</div>  
+</div>
+
+<style type="text/css">
+   ul { min-height:10px; }
+   li { width: 150px; }
+</style>
+
 
 <form method="post">
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

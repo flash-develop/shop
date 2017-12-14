@@ -28,18 +28,39 @@ class Categories extends CI_Controller {
 		$this->load->view('main_tpl', $data);
 	}
 
+	/*public function prepareHtmlForCategoriesList($categories, $class_name)
+	{	
+		$html = '<ul class="'.$class_name.' list-group">';
+		
+		foreach ($categories as $category) {
+			$glyphs = 	'<a cat_id="' . $category['id'] . '" class="color-black edit-category" href="#" style="text-decoration: none">
+						<span class="list-group-addon glyphicon glyphicon-pencil"></span>
+					</a>
+					<a cat_id="' . $category['id'] . '" class="delete-category color-black" href="#" style="text-decoration: none">
+						<span class="list-group-addon glyphicon glyphicon-remove"></span>
+					</a>';
+			$html .= '<li class="list-group-item list-group-item-cust">' . $glyphs . $category['title'] . '<ul></ul></li>'; 
+			if (count($category['child_categories'])) {
+				$html .= $this->prepareHtmlForCategoriesList($category['child_categories'], 'child_category');
+			}
+		}
+		$html .= '</ul>';
+		
+		return $html;
+	}*/
+
 	public function prepareHtmlForCategoriesList($categories, $class_name)
 	{	
 		$html = '<ul class="'.$class_name.' list-group">';
 		
 		foreach ($categories as $category) {
-			/*$glyphs = 	'<a cat_id="' . $category['id'] . '" class="color-black edit-category" href="#" style="text-decoration: none">
+			$glyphs = 	'<a cat_id="' . $category['id'] . '" class="color-black edit-category" href="#" style="text-decoration: none">
 						<span class="list-group-addon glyphicon glyphicon-pencil"></span>
 					</a>
 					<a cat_id="' . $category['id'] . '" class="delete-category color-black" href="#" style="text-decoration: none">
 						<span class="list-group-addon glyphicon glyphicon-remove"></span>
-					</a>';*/
-			$html .= '<li class="list-group-item list-group-item-cust">' . /*$glyphs . $category['title'] .*/ '<ul></ul></li>'; 
+					</a>';
+			$html .= '<li class="list-group-item list-group-item-cust">' . $glyphs . $category['title'] . '<ul></ul></li>'; 
 			if (count($category['child_categories'])) {
 				$html .= $this->prepareHtmlForCategoriesList($category['child_categories'], 'child_category');
 			}

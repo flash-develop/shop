@@ -12,8 +12,8 @@
 </div>
 
 <style type="text/css">
-   ul { min-height:10px; }
-   li { width: 150px; }
+ul { min-height:5px; }
+   li { width: 250px; }
 </style>
 
 

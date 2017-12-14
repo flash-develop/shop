@@ -9,10 +9,10 @@
 
     <title>Магазин</title>
 
-    <link href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/lightbox2/css/lightbox.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/jquery-ui/jquery-ui.min.css">
-    <link href="<?php echo base_url(); ?>css/main_css.css" rel="stylesheet">
+    <!--<link href="<?php echo base_url(); ?>css/main_css.css" rel="stylesheet">-->
     <!--  --> 
     <script type="text/javascript">
       var base_url = '<?php echo base_url(); ?>';

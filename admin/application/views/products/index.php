@@ -38,7 +38,7 @@
 	<tbody>
 		<?php foreach ($products as $each_product) { ?>
 			<tr>
-				<td><?php echo $each_product->product_id; ?></td>
+				<td><?php echo $each_product->id; ?></td>
 				<td><?php echo $each_product->title; ?></td>
 				<td><?php echo $each_product->description; ?></td>
 				<td><?php echo $each_product->short_description; ?></td>
@@ -62,7 +62,7 @@
 				</td>
 				<td>
 					<?php if($each_product->img_name && file_exists($this->config->item('upload_path') . $each_product->img_name)) { ?>
-						<a data-lightbox="product-image-<?php echo $each_product->product_id; ?>" href="<?php echo base_url(); ?>images/<?php echo $each_product->img_name; ?>">
+						<a data-lightbox="product-image-<?php echo $each_product->id; ?>" href="<?php echo base_url(); ?>images/<?php echo $each_product->img_name; ?>">
 							<img src="<?php echo base_url(); ?>images/<?php echo $each_product->img_name; ?>" width="40">
 						</a>
 					<?php } else { ?>
@@ -70,8 +70,8 @@
 					<?php } ?>
 				</td>
 				<td align="right">
-					<a class="color-black" href="<?php echo base_url(); ?>products/update/<?php echo $each_product->product_id; ?>"><span class="glyphicon glyphicon-pencil"></span></a>
-					<a class="color-black" href="<?php echo base_url(); ?>products/delete/<?php echo $each_product->product_id; ?>"><span class="glyphicon glyphicon-remove"></span></a>
+					<a class="color-black" href="<?php echo base_url(); ?>products/update/<?php echo $each_product->id; ?>"><span class="glyphicon glyphicon-pencil"></span></a>
+					<a class="color-black" href="<?php echo base_url(); ?>products/delete/<?php echo $each_product->id; ?>"><span class="glyphicon glyphicon-remove"></span></a>
 				</td>
 			</tr>
 		<?php } ?>

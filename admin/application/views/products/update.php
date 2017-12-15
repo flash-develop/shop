@@ -7,13 +7,11 @@
           <div class="form-group <?php echo (!empty(form_error('title'))) ? 'has-error' : ''; ?>">
             <label class="control-label col-sm-2" for="name">Название</label>
             <div class="col-sm-10">
-              <input type="text" name="title" value="<?php echo (!isset($product->title)) ? set_value('title') : $product->title; ?>" class="form-control" id="name" placeholder="Название товара"><?php if (form_error('title')) { ?>
+              <input type="text" name="title" value="<?php echo (!isset($post['title'])) ? $product->title : $post['title']; ?>" class="form-control" id="name" placeholder="Название товара"><?php if (form_error('title')) { ?>
                 <span class="help-block"><strong><?php echo form_error('title'); ?></strong></span>
               <?php } ?>
             </div>
           </div>
-
-          <!-- <?php echo set_value('username'); ?>-->
 
           <div class="form-group <?php echo (!empty(form_error('description'))) ? 'has-error' : ''; ?>">
             <label class="control-label col-sm-2" for="name">Описание</label>
@@ -98,7 +96,7 @@
     <?php foreach ($product->images as $each_image) {?>
         <div class="col-sm-2 position-relative">
             <a data-lightbox="product-image" href="<?php echo base_url(); ?>images/<?php echo $each_image->img_name; ?>"><img class="position-relative img-size img-style" src="<?php echo base_url(); ?>images/<?php echo $each_image->img_name; ?>" style="height: 100px;" ></a>
-            <img id="<?php echo $each_image->id; ?>" class="position-relative delete-img" data-toggle="modal" data-target="#myModal" src="<?php echo base_url(); ?>images/delete.png" height="30">
+            <img id="<?php echo $each_image->id; ?>" class="position-relative delete-img" data-toggle="modal" data-target="#myModal" src="<?php echo base_url(); ?>images/delete.png ?>" height="30">
         </div>
     <?php } ?>
 </div>

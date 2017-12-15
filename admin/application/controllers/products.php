@@ -166,6 +166,7 @@ class Products extends CI_Controller {
 
 		if (!$is_valid) {
 			$id = $post['id'];
+			$data['post'] = $post;
 			$data['upload_error'] = $upload_error;
 			$data['js_file'] = 'products';
 			$data['page'] = 'products/update';

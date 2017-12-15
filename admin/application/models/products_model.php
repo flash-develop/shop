@@ -57,7 +57,7 @@ class Products_model extends CI_Model {
 	{
 		$offset = ($page - 1) * $items_per_page;
 
-		$q = "SELECT * 
+		$q = "SELECT *, products.id as id
 			FROM products
 			LEFT JOIN products_images ON products.id = products_images.product_id 
 			WHERE ";

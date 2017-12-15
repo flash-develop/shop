@@ -1,12 +1,23 @@
-<h1>Категории</h1>
+<h1 class="text-center-margin-bottom">Категории</h1>
+
+<div class="row margin-bottom">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="text-center-margin-bottom margin-10">
+            <button type="button" class="add-btn btn btn-primary">Добавить категорию</button>
+        </div>
+        <div id="sortable">
+            <?php echo $html; ?>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    ul { min-height:15px; }
+    li { width: 250px; }
+</style>
 
 
-
-
-<?php echo $html; ?>
-<button type="button" class="add-btn btn btn-primary">Добавить категорию</button>
-
-<form action="<?php echo base_url(); ?>categories/update" method="post">
+<form method="post">
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -16,13 +27,19 @@
           </div>
           <div class="modal-body">
             <input type="text" name="category_id" hidden value="" id="category_id">
-            <div class="form-group">
+            <div class="form-group form-group-title">
                 <label for="title">Название</label>
                 <input type="text" name="title" class="form-control" value="" id="title">
+                <div class="has-error">
+                    <span class="help-block"><strong class="error-title"></strong></span>
+                </div>
             </div>
-                <div class="form-group">
+                <div class="form-group form-group-description">
                 <label for="description">Описание</label>
                 <input type="text" name="description" class="form-control" value="" id="description">
+                <div class="has-error">
+                    <span class="help-block"><strong class="error-description"></strong></span>
+                </div>
             </div>
             <div class="form-group">
                 <label for="category-select">Родительская категория</label>
@@ -35,7 +52,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
             <a class='delete_image' href="#">
-                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <button type="submit" class="btn btn-primary submit-btn">Сохранить</button>
             </a>
           </div>
         </div>
@@ -45,15 +62,23 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+  
+        $("#sortable ul").sortable({
+                connectWith: "#sortable ul",
+                placeholder: "ui-state-highlight"
+        });
+
+
+
+
       $(".edit-category").click(function() {
+        
         $('.preloader').show();
         var id = $(this).attr('cat_id');
 
         var data = {
             "id": id
         }
-
-        
 
         $.ajax({
             type: 'POST',
@@ -63,8 +88,13 @@
             success: function(response){
                 $('#title').attr('value', response.category.title);
                 $('#description').attr('value', response.category.description);
-                $('#category-select').val(response.category.id).attr('value', response.category.id);
+                if (!response.category.parent_id) {
+                    $('#category-select [value=0]').attr('selected', 'selected');
+                } else {
+                    $('#category-select [value='+response.category.parent_id+']').attr('selected', 'selected');
+                }
                 $('#category_id').attr('value', id);
+                $('form').attr('action', base_url + 'categories/update');
                 $('.preloader').hide();
                 $("#myModal").modal('show');
             },
@@ -97,13 +127,39 @@
         });
       });
 
-      $(".add-btn").click(function() {
+       $(".add-btn").click(function() {
         $('#category-select [value=0]').attr('selected', 'selected');
-        $('#title, #description, #category-select').attr('value', '');
+        $('#title, #description').attr('value', '');
+        $('form').attr('action', base_url + 'categories/create');
         $("#myModal").modal('show');
         $("#myModalLabel").text('Добавить новую категорию');
-        $('form').attr('action', '<?php echo base_url(); ?>categories/create');
       });
+
+       $(".submit-btn").click(function() {
+            $('.form-group-description').removeClass('has-error');
+            $('.form-group-title').removeClass('has-error');
+
+            $('.error-description').text('');
+            $('.error-title').text('');
+
+            var is_error = '0';
+
+            if ($('#title').val() == '') {
+                $('.form-group-title').addClass('has-error');
+                $('.error-title').text('Введите название категории');
+                is_error = '1';
+            }
+            if ($('#description').val() == '') {  
+                $('.form-group-description').addClass('has-error');
+                $('.error-description').text('Введите описание категории');
+                is_error = '1';
+            }
+
+            if(is_error == '1') {
+                return false;
+            }
+            
+        });
     });
 </script>
 

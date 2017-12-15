@@ -20,7 +20,7 @@ class Categories extends CI_Controller {
 	{
 		$categories = $this->categories_model->getCategories();
 
-		$data['html'] = $this->prepareHtmlForCategoriesList($categories, 'parent_category');
+		$data['html'] = '<div id="sortable">'.$this->prepareHtmlForCategoriesList($categories, 'parent_category').'</div>';
 
 		$data['htmlSelect'] = $this->prepareHtmlForCategoriesSelect($categories);
 
@@ -34,20 +34,23 @@ class Categories extends CI_Controller {
 		
 		foreach ($categories as $category) {
 			$glyphs = 	'<a cat_id="' . $category['id'] . '" class="color-black edit-category" href="#" style="text-decoration: none">
-						<span class="glyphicon glyphicon-pencil"></span>
+						<span class="list-group-addon glyphicon glyphicon-pencil"></span>
 					</a>
 					<a cat_id="' . $category['id'] . '" class="delete-category color-black" href="#" style="text-decoration: none">
-						<span class="glyphicon glyphicon-remove"></span>
+						<span class="list-group-addon glyphicon glyphicon-remove"></span>
 					</a>';
-			$html .= '<li>' . $category['title'] . $glyphs . '</li>'; 
+			$html .= '<li class=""><div class="border-category">' . $glyphs . $category['title'] . '</div>'; 
 			if (count($category['child_categories'])) {
-				$html .= $this->prepareHtmlForCategoriesList($category['child_categories'], 'child_category');
+				$html .= $this->prepareHtmlForCategoriesList($category['child_categories'], 'child_category') . '</li>';
+			}else {
+				$html .= '<ul></ul></li>';
 			}
 		}
 		$html .= '</ul>';
+		
 		return $html;
 	}
-
+	
 	public function prepareHtmlForCategoriesSelect($categories, $space = '')
 	{	
 		$html = '';
@@ -98,7 +101,3 @@ class Categories extends CI_Controller {
 		redirect('categories/index');
 	}
 }
-
-
-
-

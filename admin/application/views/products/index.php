@@ -4,10 +4,7 @@
 	<div class="row">
 		<h4 class="padding-left-right-5-5">ПОИСК:</h4>
 		<div class="col-sm-4 padding-left-right-5-5 form-group">
-		    <input type="text" name="title" placeholder="Название" value="<?php echo (!empty($filters['title'])) ? $filters['title'] : ''; ?>" class="form-control" id="title" placeholder="">
-		</div>
-		<div class="col-sm-4 padding-left-right-5-5 form-group">
-		    <input type="text" name="vendor_code" placeholder="Артикул" value="<?php echo (!empty($filters['vendor_code'])) ? $filters['vendor_code'] : ''; ?>" class="form-control" id="vendor_code" placeholder="">
+		    <input type="text" name="q" placeholder="Поиск..." value="<?php echo (!empty($filters['q'])) ? $filters['q'] : ''; ?>" class="form-control">
 		</div>
 
 	    <div class="col-sm-1 padding-left-right-5-5">
@@ -65,7 +62,9 @@
 				</td>
 				<td>
 					<?php if($each_product->img_name && file_exists($this->config->item('upload_path') . $each_product->img_name)) { ?>
-						<img src="<?php echo base_url(); ?>images/<?php echo $each_product->img_name; ?>" width="40">
+						<a data-lightbox="product-image-<?php echo $each_product->product_id; ?>" href="<?php echo base_url(); ?>images/<?php echo $each_product->img_name; ?>">
+							<img src="<?php echo base_url(); ?>images/<?php echo $each_product->img_name; ?>" width="40">
+						</a>
 					<?php } else { ?>
 						<img src="<?php echo base_url(); ?>images/placeholder.png" width="40">
 					<?php } ?>

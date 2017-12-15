@@ -1,0 +1,504 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 14, 2017 at 10:34 AM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 5.6.31
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `shop_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `addresses`
+--
+
+CREATE TABLE `addresses` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `street` varchar(255) NOT NULL,
+  `building` varchar(255) NOT NULL,
+  `apartment` varchar(255) NOT NULL,
+  `region_id` int(10) NOT NULL,
+  `country_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `addresses`
+--
+
+INSERT INTO `addresses` (`id`, `city`, `street`, `building`, `apartment`, `region_id`, `country_id`) VALUES
+(19, 'Крымск', 'Питерская', '12', '2', 2, 1),
+(22, '', '', '', '', 1, 1),
+(23, 'Stav', 'Kor', '7', '6', 1, 1),
+(24, '1', '1', '1', '1', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `parent_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `title`, `description`, `parent_id`) VALUES
+(1, 'Игрушки', 'Игрушки для детей', NULL),
+(8, 'Игрушки для мальчиков', 'Игрушки для мальчиков', 1),
+(9, 'Машинки', 'Машинки для мальчиков', 8),
+(10, 'Корм', 'Корм для животных', NULL),
+(11, 'Корм для собак', 'Собачий корм', 10),
+(13, 'Игрушки для девочек', 'Игрушки для девочек', 1),
+(17, 'Корм для кошек', 'Кошачий корм', 10),
+(19, 'Корм для хомяков', 'Хомячий корм', 10),
+(20, 'Игрушки для животных', 'Всякие штуки', 1),
+(21, 'Дралки для кота', 'Драть когти', 20),
+(22, 'Мячики для собаки', 'Пищащий', 20),
+(23, 'Лесенки для хомяка', 'Хомяк, лазь', 20);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ci_sessions`
+--
+
+CREATE TABLE `ci_sessions` (
+  `id` varchar(40) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `data` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ci_sessions`
+--
+
+INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
+('00iq44l4cbhr52190ubge33ceph5ftcs', '::1', 1513185991, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138353737373b757365725f69647c733a323a223335223b),
+('00qhcidpdaga1msbdjaeogrekc80aesi', '::1', 1513187112, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138373032393b757365725f69647c733a323a223335223b),
+('0d3m89u2ubl8ud0s6rivqurm6tu25us8', '::1', 1513023692, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333032333339343b757365725f69647c733a323a223335223b),
+('0hr4sccj5p48dc70hfetonp4h8odcv9v', '::1', 1513090913, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333039303632323b757365725f69647c733a323a223335223b),
+('0io4729krid6bke5jrkqa7ou6ls54spd', '::1', 1513196135, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333139353836383b757365725f69647c733a323a223335223b),
+('0pnu5teu9nv7fie78hvap025nd8u6i4p', '::1', 1513014857, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333031343832373b757365725f69647c733a323a223335223b),
+('1mgiru85ht4v3od70m8ubl049ubf2ll5', '::1', 1513187025, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138363637383b757365725f69647c733a323a223335223b),
+('1monn81udk6i1740d7f7j76c9jsu19pc', '::1', 1513157337, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333135373332373b757365725f69647c733a323a223335223b),
+('32fjt7srvsrb7fnoenkg8apc9bcujdom', '::1', 1513089156, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333038383836363b757365725f69647c733a323a223335223b),
+('36nlgsm0ot21ol9eusnn9mcfeisj6sfv', '::1', 1513091965, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333039313638343b757365725f69647c733a323a223335223b),
+('47slug67329kj7cdrdg44g339e3r9l6o', '::1', 1513090349, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333039303331323b757365725f69647c733a323a223335223b),
+('4gbpstd1r0dq7tlevuo8rk9lac6oh3qk', '::1', 1513167455, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333136373434323b757365725f69647c733a323a223335223b),
+('4iloldq0mgqssbc0c41kj2due9rf3ilv', '::1', 1513078490, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037383331363b757365725f69647c733a323a223335223b),
+('4tgdjvgieqe6v4uc5oai3tbuqu8nnkar', '::1', 1513081836, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333038313734303b757365725f69647c733a323a223335223b),
+('51u69eofgv14vgir2k2vkuf9kdgq15od', '::1', 1513016496, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333031363439363b757365725f69647c733a323a223335223b),
+('5jh5qvfapd7f1fpimnbbg2gtamkhiucm', '::1', 1513092656, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333039323539333b757365725f69647c733a323a223335223b),
+('5mqomfbr15ta7uhmh1bb759do0iqi12t', '::1', 1513075421, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037353132313b757365725f69647c733a323a223335223b),
+('5obd7v8v215rucj9onp93f5jautdd4bq', '::1', 1513013515, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333031333531343b),
+('6hcremre22c9hnnkc7betso215gpfo00', '::1', 1513016054, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333031363035343b757365725f69647c733a323a223335223b),
+('7kag13u9j0kr1rbsndheo4td00koihl5', '::1', 1513005281, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333030323938353b757365725f69647c733a323a223335223b),
+('7tpbmkshh4hvvc85ka7glflblf4liusf', '::1', 1513078252, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037373935323b757365725f69647c733a323a223335223b),
+('80s25722j8bgc00llj1huto9mnlq0feo', '::1', 1513194512, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333139343335393b757365725f69647c733a323a223335223b),
+('88fdck5ekhp0b45r8qaiikmv2u131c4m', '::1', 1513077499, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037373331353b757365725f69647c733a323a223335223b),
+('8oom5se32slb6inmjod28dvctdtravse', '::1', 1513089478, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333038393230353b757365725f69647c733a323a223335223b),
+('91ts411d4gnrugsffqovb4ai3hmnf96g', '::1', 1513088374, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333038383038303b757365725f69647c733a323a223335223b),
+('93a91cihmrrs6udf6081cug03q2ofm8f', '::1', 1513091644, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333039313337383b757365725f69647c733a323a223335223b),
+('93nnludb9bf0md9jkab3fstri6n5tu8m', '::1', 1513155460, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333135353436303b757365725f69647c733a323a223335223b),
+('9a1ncs9et1b2ujk8vd2gcekagp187o34', '::1', 1513072016, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037323031343b),
+('9c1vvet2oi69nrii6qt4du7vl1660nc2', '::1', 1513192479, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333139323139303b757365725f69647c733a323a223335223b),
+('9g2er1l6lcakl8rfiu38hm6jhde54pgp', '::1', 1513094075, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333039333939303b757365725f69647c733a323a223335223b),
+('a65j384qkfddac8hpir1h8qnhm5f96qn', '::1', 1513076073, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037353837323b757365725f69647c733a323a223335223b),
+('acanbo1pt7p2jugu4s08saneoccekc7v', '::1', 1513189819, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138393631323b757365725f69647c733a323a223335223b),
+('ake7vmo49cjentm2pcl4veaqndbqtf8m', '::1', 1513074535, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037343533353b757365725f69647c733a323a223335223b),
+('bssvpnn32tcbt3rvvpsadc486ft6dmpc', '::1', 1513023145, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333032333034383b757365725f69647c733a323a223335223b),
+('cnidfm4ot8qopvvmml7ba97vatar1lp6', '::1', 1513079549, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037393236313b757365725f69647c733a323a223335223b),
+('d0a46u69tlbe8ft6pp73s8ifpv2f8tmj', '::1', 1513086953, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333038363734333b757365725f69647c733a323a223335223b),
+('d6hhdkfrp390b9ei9jq40gh2q9d4lg14', '::1', 1513155044, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333135353033393b),
+('dcnd85q2oe4ur0ht8vcl401lotht6ggg', '::1', 1513181631, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138313631383b757365725f69647c733a323a223335223b),
+('df6bi2i9ndddi6jsj1i4sh3nug79risl', '::1', 1513076433, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037363337353b757365725f69647c733a323a223335223b),
+('e0d2dr297s9kec34c3pcl0fifgoarq90', '::1', 1513154881, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333135343633373b757365725f69647c733a323a223335223b),
+('ebbqjl7a34csrmp6flj7bh7iad78gmih', '::1', 1513018113, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333031383131313b757365725f69647c733a323a223335223b),
+('ep6gdrodr1cgdocv7tkrbhc04q76f7lq', '::1', 1513023920, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333032333733343b757365725f69647c733a323a223335223b),
+('et95j4t5t0cmd2pn6o6pbdrj8r23p706', '::1', 1513015389, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333031353139313b757365725f69647c733a323a223335223b),
+('etg9759rd429715s98lqipn9ik10lokk', '::1', 1513077146, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037373030323b757365725f69647c733a323a223335223b),
+('g6m8kl4r2a3153re0ppocd19noqdieo7', '::1', 1513192511, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333139323439393b757365725f69647c733a323a223335223b),
+('hcjm2utn41u38qli5453rh17balb5305', '::1', 1513075760, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037353436313b757365725f69647c733a323a223335223b),
+('hfpibfdia5lu0fervf0qh92rut96i9tv', '::1', 1513087522, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333038373235353b757365725f69647c733a323a223335223b),
+('hpgjikgl7tig7vdb5am6mqp5qmap8otd', '::1', 1513077881, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037373635303b757365725f69647c733a323a223335223b),
+('ifqt983hr4c9l8mo390338fprsftojnj', '::1', 1513195225, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333139353137323b757365725f69647c733a323a223335223b),
+('ina1ioe4jrs76cpdpipe1pk0ptg935l8', '::1', 1513091004, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333039303934323b757365725f69647c733a323a223335223b),
+('j6penu53lh71ta8g60tie50c933ejv2o', '::1', 1513186270, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138363237303b757365725f69647c733a323a223335223b),
+('k7265to2f9j8cl8mpcrhju719k63fqcb', '::1', 1513022131, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333032313839323b757365725f69647c733a323a223335223b),
+('k97ogm9fi1qbi2u5lcjca884e209omnj', '::1', 1513188498, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138383335323b757365725f69647c733a323a223335223b),
+('lmkes5oobpi6l991dinkje33b9ja5407', '::1', 1513191337, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333139313230343b757365725f69647c733a323a223335223b),
+('meamcerh6iiog1533njecgjohs5mvn26', '::1', 1513183126, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138333132363b757365725f69647c733a323a223335223b),
+('nhc6231s3lvb0p0eedvggan44996if87', '::1', 1513189310, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138393131373b757365725f69647c733a323a223335223b),
+('oh7eunlkomo8tsuht859it50kslsm944', '::1', 1513185701, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138353431333b757365725f69647c733a323a223335223b),
+('oqoc12rapb10t27g91t77347vuvspdv6', '::1', 1513193455, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333139333433383b757365725f69647c733a323a223335223b),
+('ousvck0nn6t4ns57riq8ck8uptfdnr45', '::1', 1513193888, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333139333735303b757365725f69647c733a323a223335223b),
+('p5tr8vmi0cubefj6pbk9qu29073307t0', '::1', 1513088772, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333038383533303b757365725f69647c733a323a223335223b),
+('p6k1ck849h1sksnjdk7cjo3m244tmbaj', '::1', 1513156610, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333135363537333b757365725f69647c733a323a223335223b),
+('qe8ucu4jnjsh41q0gbrvqmpq216h26b9', '::1', 1513079191, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037383935303b757365725f69647c733a323a223335223b),
+('ra1d0t8vtt53s9lrarciotbv03jhm4ip', '::1', 1513190009, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138393937333b757365725f69647c733a323a223335223b),
+('ra5altubllq7ej0vliibboq5pkutemrk', '::1', 1513195735, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333139353532383b757365725f69647c733a323a223335223b),
+('rahll9ejflmc67mdngl16ljmpnk6058j', '::1', 1513092076, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333039323036343b757365725f69647c733a323a223335223b),
+('rb04dkm16um14b5ro6au915freci4ldf', '::1', 1513021892, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333031393032353b757365725f69647c733a323a223335223b),
+('re687hu18injidasang20uc3c9f4mh42', '::1', 1513014188, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333031343136353b757365725f69647c733a323a223335223b),
+('rnn2ienjphdsptub7qc7ogvjl993hnm4', '::1', 1513195136, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333139343836363b757365725f69647c733a323a223335223b),
+('rnt8lijua29kfvcscebisirgs65ls2ig', '::1', 1513022612, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333032323334353b757365725f69647c733a323a223335223b),
+('run8tmthsuvffmdotdctli3bo05l06k9', '::1', 1513188350, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138373434363b757365725f69647c733a323a223335223b),
+('sckf75kgkmder059tmi9slj0vpc9qjlq', '::1', 1513184598, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138343434373b757365725f69647c733a323a223335223b),
+('sf0mscbs1p1v27s59q8v47ccr8dl9f5d', '::1', 1513192111, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333139313833333b757365725f69647c733a323a223335223b),
+('sk835c9ct7n3mtodoefs6osl8vglt69f', '::1', 1513185279, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138343938373b757365725f69647c733a323a223335223b),
+('t2cit6qj83kdg7ghk4cm90kuior6dd6l', '::1', 1513079872, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333037393537393b757365725f69647c733a323a223335223b),
+('t749lj95cg71a7p2ivp2ei4q6s6h7oaa', '::1', 1512997552, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531323939373335343b757365725f69647c733a323a223335223b),
+('u4s0mj2tit6hctl96h0v61pbd6dnksng', '::1', 1513242776, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333234323534353b757365725f69647c733a323a223335223b),
+('ublkg5e85n425bppf1h02g2u8c7duh5k', '::1', 1512996995, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531323939363639383b757365725f69647c733a323a223335223b),
+('uhr4kl1mrbjr6cmgq1017ufmpdvh5dnc', '::1', 1512997224, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531323939363939393b757365725f69647c733a323a223335223b),
+('vei0avknkmgu91d05r6dnu5hf4fpv3gv', '::1', 1513022975, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333032323638303b757365725f69647c733a323a223335223b),
+('vje69je9t4lsasap629ks7f4rddmtkb4', '::1', 1513183462, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531333138333436313b757365725f69647c733a323a223335223b);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `countries`
+--
+
+CREATE TABLE `countries` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `countries`
+--
+
+INSERT INTO `countries` (`id`, `name`) VALUES
+(1, 'Россия');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `short_description` text NOT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `sale_percent` int(10) NOT NULL,
+  `sale_price` decimal(10,2) DEFAULT NULL,
+  `vendor_code` varchar(255) NOT NULL,
+  `is_available` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `title`, `description`, `short_description`, `price`, `sale_percent`, `sale_price`, `vendor_code`, `is_available`) VALUES
+(3, 'Волга заводная', 'Волга Металлическая на ключике балонном. Заводится с ключа', 'Волга Металлическая на ключике', '500.00', 6, '470.00', 'ВМ500ПР', 1),
+(41, 'Корм для псины', 'Что бы кормить собаку', 'Собака будет рада', '578.00', 45, '318.00', 'КДП1000', 1),
+(76, 'Ракета Корм для кота ', 'Кот ешь', 'На здоровье', '78.00', 0, '0.00', 'ККЕ55', 1),
+(84, 'Ракета', 'Космический корабль Байконур', 'В стратосферу за секунду', '546.00', 6, '513.00', 'РБ78', 1),
+(85, 'Камаз', 'Металлический и блестящий', 'На батарейках, с прицепом', '453.00', 4, '435.00', 'КМБН453', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products_categories`
+--
+
+CREATE TABLE `products_categories` (
+  `product_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `products_categories`
+--
+
+INSERT INTO `products_categories` (`product_id`, `category_id`) VALUES
+(35, 0),
+(36, 0),
+(37, 0),
+(38, 0),
+(39, 0),
+(43, 0),
+(44, 0),
+(45, 0),
+(47, 0),
+(48, 0),
+(55, 10),
+(55, 11),
+(56, 10),
+(56, 11),
+(1, 1),
+(1, 8),
+(77, 1),
+(77, 8),
+(80, 1),
+(80, 8),
+(81, 1),
+(81, 8),
+(82, 1),
+(82, 8),
+(85, 1),
+(85, 8),
+(85, 9),
+(84, 1),
+(84, 8),
+(76, 10),
+(76, 14),
+(3, 10),
+(3, 11),
+(41, 10),
+(41, 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products_images`
+--
+
+CREATE TABLE `products_images` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `img_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `products_images`
+--
+
+INSERT INTO `products_images` (`id`, `product_id`, `img_name`) VALUES
+(1, 73, ''),
+(2, 75, 'Baykonur10.png'),
+(3, 70, '24.jpg'),
+(5, 2, 'Volga.JPG'),
+(6, 2, 'Volga2.JPG'),
+(10, 74, '2017-12-01_19-51-42.png'),
+(11, 76, '2017-12-02_11-20-03.jpg'),
+(12, 76, '2017-12-02_11-20-031.jpg'),
+(13, 76, '2017-12-02_11-20-032.jpg'),
+(14, 76, '2017-12-02_11-20-03.png'),
+(15, 76, '2017-12-02_11-20-033.jpg'),
+(16, 76, '2017-12-02_11-20-034.JPG'),
+(47, 83, '2017-12-05_17-36-361.jpg'),
+(48, 83, '2017-12-05_17-36-362.jpg'),
+(50, 83, '2017-12-05_17-36-364.jpg'),
+(51, 83, '2017-12-05_17-36-36.png'),
+(67, 41, '2017-12-06_13-35-18.jpg'),
+(68, 41, '2017-12-06_13-35-181.jpg'),
+(69, 3, '2017-12-06_13-36-22.jpg'),
+(70, 3, '2017-12-06_13-36-221.jpg'),
+(71, 3, '2017-12-06_13-36-22.png'),
+(72, 3, '2017-12-06_13-36-222.JPG'),
+(73, 84, '2017-12-06_13-46-51.jpg'),
+(74, 84, '2017-12-06_13-46-511.jpg'),
+(75, 84, '2017-12-06_13-46-512.jpg'),
+(76, 85, '2017-12-06_13-48-54.jpg'),
+(77, 85, '2017-12-06_13-48-541.jpg'),
+(78, 85, '2017-12-06_13-48-542.jpg'),
+(79, 85, '2017-12-06_13-48-543.jpg'),
+(82, 41, '2017-12-07_15-05-48.'),
+(83, 84, '2017-12-07_15-33-31.'),
+(84, 41, '2017-12-07_15-33-41.'),
+(85, 76, '2017-12-07_15-33-53.'),
+(90, 41, '2017-12-07_16-13-49.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `regions`
+--
+
+CREATE TABLE `regions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `regions`
+--
+
+INSERT INTO `regions` (`id`, `name`) VALUES
+(1, 'Ставропольский край'),
+(2, 'Краснодарский край'),
+(3, 'Санкт-Петербург');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `address_id` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `username`, `first_name`, `last_name`, `address_id`) VALUES
+(18, 'test@test.t', 'bab477c82d4a0ca93728853bc2e03140', 'Тестер', 'Тест', 'Тестович', 19),
+(35, '1@1.1', '2b38350514bac76f19deaece62516e7a', '1', '12', '12', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_hash_data`
+--
+
+CREATE TABLE `users_hash_data` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `hashed_email` varchar(255) NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users_hash_data`
+--
+
+INSERT INTO `users_hash_data` (`id`, `user_id`, `hashed_email`, `creation_date`) VALUES
+(30, 35, '460fd167c86d5af2303f8c8305ee5665', '2017-11-22 10:26:57'),
+(31, 35, '460fd167c86d5af2303f8c8305ee5665', '2017-11-23 09:12:25'),
+(32, 35, '460fd167c86d5af2303f8c8305ee5665', '2017-11-23 12:32:48');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `addresses`
+--
+ALTER TABLE `addresses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ci_sessions`
+--
+ALTER TABLE `ci_sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
+
+--
+-- Indexes for table `countries`
+--
+ALTER TABLE `countries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products_images`
+--
+ALTER TABLE `products_images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `regions`
+--
+ALTER TABLE `regions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users_hash_data`
+--
+ALTER TABLE `users_hash_data`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `addresses`
+--
+ALTER TABLE `addresses`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+--
+-- AUTO_INCREMENT for table `countries`
+--
+ALTER TABLE `countries`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+--
+-- AUTO_INCREMENT for table `products_images`
+--
+ALTER TABLE `products_images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+--
+-- AUTO_INCREMENT for table `regions`
+--
+ALTER TABLE `regions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+--
+-- AUTO_INCREMENT for table `users_hash_data`
+--
+ALTER TABLE `users_hash_data`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -73,7 +73,7 @@
         <label class="control-label col-sm-2">Наличие на складе</label>
         <div class="col-sm-10">
             <label class="checkbox-inline" for="is-avalible">
-                <input id="is-avalible" name="is_available" type="checkbox" value="1" checked><strong> В наличии</strong>
+                <input <?php echo ($product->is_available) ? 'checked' : ''; ?> id="is-avalible" name="is_available" type="checkbox" value="1" ><strong> В наличии</strong>
             </label>
         </div>
     </div>
@@ -95,7 +95,7 @@
 <div class="row">
     <?php foreach ($product->images as $each_image) {?>
         <div class="col-sm-2 position-relative">
-            <img class="position-relative img-size img-style" src="<?php echo base_url(); ?>images/<?php echo $each_image->img_name; ?>" style="height: 100px;" >
+            <a data-lightbox="product-image" href="<?php echo base_url(); ?>images/<?php echo $each_image->img_name; ?>"><img class="position-relative img-size img-style" src="<?php echo base_url(); ?>images/<?php echo $each_image->img_name; ?>" style="height: 100px;" ></a>
             <img id="<?php echo $each_image->id; ?>" class="position-relative delete-img" data-toggle="modal" data-target="#myModal" src="<?php echo base_url(); ?>images/delete.png ?>" height="30">
         </div>
     <?php } ?>

@@ -6,6 +6,10 @@
       margin: 10px;
 }
 
+.margin-bottom {
+	margin-bottom: 30px;
+}
+
 .navbar .navbar-nav > li > a {
     line-height: 45px;
 }
@@ -15,12 +19,20 @@
 	margin-bottom: 20px;
 }
 
+.glyph-wrapper {
+
+}
+
 .strong-text {
 	font-weight: bold;
 }
 
 .display-none {
 	display: none;
+}
+
+.list-group {
+	margin-bottom: 0px;
 }
 
 .categories-checkboxes {
@@ -96,4 +108,27 @@ ul.child_category {
 	opacity: 0.5;
 	background: #333 url('../images/loading.gif') no-repeat center center;
 	display: none;
+}
+
+.list-group-item-cust {
+	padding-left: 5px;
+	padding-top: 10px;
+	margin-top: 5px;
+}
+
+.list-group-addon {
+  padding: 5px 5px;
+  font-size: 15px;
+  display:inline;
+  font-weight: normal;
+  line-height: 1;
+  color: #555555;
+  text-align: center;
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+}
+
+.border-category {
+	border: 1px solid;
 }

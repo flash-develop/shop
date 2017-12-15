@@ -14,7 +14,7 @@ class Products_model extends CI_Model {
 			FROM products 
 			WHERE ";
 
-		$q .= implode(' AND ', $this->getFilters($filters));
+		$q .= implode(' OR ', $this->getFilters($filters));
  
 		$query = $this->db->query($q);
 		$result = $query->row(); // result will return array of objectes, row return just object
@@ -42,13 +42,14 @@ class Products_model extends CI_Model {
 	{
 		$where_params = array('1');
 
-		if (!empty($filters['vendor_code'])) {
-			$where_params[] = "products.vendor_code LIKE '%{$filters['vendor_code']}%'";
+		if (!empty($filters['q'])) {
+			$where_params = array();
+			$where_params[] = "products.title LIKE '%{$filters['q']}%'";
+			$where_params[] = "products.description LIKE '%{$filters['q']}%'";
+			$where_params[] = "products.short_description LIKE '%{$filters['q']}%'";
+			$where_params[] = "products.vendor_code LIKE '%{$filters['q']}%'";
 		}
 
-		if (!empty($filters['title'])) {
-			$where_params[] = "products.title LIKE '%{$filters['title']}%'";
-		}
 		return $where_params;
 	}
 
@@ -61,12 +62,12 @@ class Products_model extends CI_Model {
 			LEFT JOIN products_images ON products.id = products_images.product_id 
 			WHERE ";
 
-		$q .= implode(' AND ', $this->getFilters($filters));
+		$q .= implode(' OR ', $this->getFilters($filters));
 
 		$q .= " GROUP BY products.id";
 
 		$q .= " LIMIT {$offset}, {$items_per_page}";
-
+		//var_dump($q);exit;
 		$query = $this->db->query($q);
 		$result = $query->result();
 
@@ -117,18 +118,16 @@ class Products_model extends CI_Model {
 		return true;
 	}
 
-	function getProduct($page)
+	function getProduct($id)
 	{
-		
-
 		$q = "SELECT *
 			FROM products
-			WHERE id = '$page'";
+			WHERE id = '{$id}'";
 
 		$query = $this->db->query($q);
 		$result = $query->row();
-
-		$result->images = $this->files_model->getImages($page);
+		//var_dump($result);exit;
+		$result->images = $this->files_model->getImages($id);
 
 		return $result;
 	}

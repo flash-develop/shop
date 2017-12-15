@@ -73,7 +73,7 @@
         <label class="control-label col-sm-2">Наличие на складе</label>
         <div class="col-sm-10">
             <label class="checkbox-inline" for="is-avalible">
-                <input id="is-avalible" name="is_available" type="checkbox" value="1" checked><strong> В наличии</strong>
+                <input <?php echo ($product->is_available) ? 'checked' : ''; ?> id="is-avalible" name="is_available" type="checkbox" value="1" ><strong> В наличии</strong>
             </label>
         </div>
     </div>

@@ -128,3 +128,7 @@ ul.child_category {
   border: 1px solid #cccccc;
   border-radius: 6px;
 }
+
+.border-category {
+	border: 1px solid;
+}

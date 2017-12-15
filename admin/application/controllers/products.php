@@ -147,7 +147,7 @@ class Products extends CI_Controller {
 		$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category');
 
 		$data['product'] = $this->products_model->getProduct($id);
-
+//var_dump($data['product']);exit;
 		$data['js_file'] = 'products';
 		$data['page'] = 'products/update';
 		$this->load->view('main_tpl', $data);

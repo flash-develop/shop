@@ -74,7 +74,6 @@ class Products extends CI_Controller {
 	public function create()
 	{
 		$data['html'] = $this->getHtmlCheckboxes();
-
 		$data['js_file'] = 'products';
 		$data['page'] = 'products/create';
 		$this->load->view('main_tpl', $data);
@@ -139,7 +138,6 @@ class Products extends CI_Controller {
 				$error = $this->upload->display_errors();
 				return [$error, null];
 			}
-
 			$data = $this->upload->data();
 			$images[] = $data['file_name'];
         }
@@ -152,9 +150,8 @@ class Products extends CI_Controller {
 		$id = $this->uri->segment(3);
 
 		$data['html'] = $this->getHtmlCheckboxes();
-
 		$data['product'] = $this->products_model->getProduct($id);
-//var_dump($data['product']);exit;
+		var_dump($data['product']);exit;
 		$data['js_file'] = 'products';
 		$data['page'] = 'products/update';
 		$this->load->view('main_tpl', $data);
@@ -166,7 +163,6 @@ class Products extends CI_Controller {
 		$id = $post['id'];
 
 		$data['product'] = $this->products_model->getProduct($id);
-
 		list($upload_error, $file_names) = $this->uploading();
 
 		$is_valid = $this->validation($upload_error);

@@ -64,10 +64,16 @@ class Products extends CI_Controller {
 		redirect('products/update/' . $result->product_id);
 	}
 
-	public function create()
+	public function getHtmlCheckboxes()
 	{
 		$categories = $this->categories_model->getCategories();
-		$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category');
+		$html = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category');
+		return $html;
+	}
+
+	public function create()
+	{
+		$data['html'] = $this->getHtmlCheckboxes();
 
 		$data['js_file'] = 'products';
 		$data['page'] = 'products/create';
@@ -83,7 +89,7 @@ class Products extends CI_Controller {
 		$is_valid = $this->validation($upload_error);
 
 		if (!$is_valid) {
-			$data['upload_error'] = $upload_error;
+			$data['upload_error'] = $upload_error;	
 			$data['js_file'] = 'products';
 			$data['page'] = 'products/create';
 			$this->load->view('main_tpl', $data);
@@ -109,6 +115,10 @@ class Products extends CI_Controller {
 
 		$files = $_FILES['userfile'];
 
+		if (!$files['name']['0']) {
+			return;
+		}
+
         foreach ($files['name'] as $key => $image) {
             $_FILES['my_new_file']['name'] = $files['name'][$key];
             $_FILES['my_new_file']['type'] = $files['type'][$key];
@@ -124,13 +134,11 @@ class Products extends CI_Controller {
 
             $this->upload->initialize($config);
 
-            $this->upload->do_upload('my_new_file');
-
-            /*if (!$this->upload->do_upload('my_new_file'))
+            if (!$this->upload->do_upload('my_new_file'))
 			{
 				$error = $this->upload->display_errors();
 				return [$error, null];
-			}*/
+			}
 
 			$data = $this->upload->data();
 			$images[] = $data['file_name'];
@@ -143,8 +151,7 @@ class Products extends CI_Controller {
 	{
 		$id = $this->uri->segment(3);
 
-		$categories = $this->categories_model->getCategories();
-		$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category');
+		$data['html'] = $this->getHtmlCheckboxes();
 
 		$data['product'] = $this->products_model->getProduct($id);
 //var_dump($data['product']);exit;
@@ -165,6 +172,7 @@ class Products extends CI_Controller {
 		$is_valid = $this->validation($upload_error);
 
 		if (!$is_valid) {
+			$data['html'] = $this->getHtmlCheckboxes();	
 			$id = $post['id'];
 			$data['post'] = $post;
 			$data['upload_error'] = $upload_error;

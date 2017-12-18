@@ -64,7 +64,6 @@
         </div>
 
         <div class="col-sm-3">
-            
             <div class="categories-checkboxes">
                 <?php if (!empty($cat_error)) { ?>
                     <div class="has-error">

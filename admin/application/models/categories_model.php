@@ -48,7 +48,6 @@ class Categories_model extends CI_Model {
 		foreach ($products_categories as $each_cat) {
 			$cat_id[] = $each_cat->id;
 		}
-		//var_dump($cat_id);exit;
 		return $cat_id;
 	}
 

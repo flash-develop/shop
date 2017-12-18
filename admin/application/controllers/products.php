@@ -170,10 +170,14 @@ class Products extends CI_Controller {
 
 		$categories = $this->categories_model->getCategories();
 		$product_cat = $this->categories_model->getProductCategoriesInUpdate($data['product']);
-
 		$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category', $product_cat);
 
 		$is_valid = $this->validation($upload_error);
+
+		if (!isset($post['categories'])) {
+				$data['cat_error'] = 'Необходимо выбрать категорию';
+				$is_valid = false;
+			}
 
 		if (!$is_valid) {
 			

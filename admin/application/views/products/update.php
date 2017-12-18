@@ -65,7 +65,14 @@
         </div>
     
         <div class="col-sm-3">
-            <div class="categories-checkboxes"><?php echo $html ?></div>
+            <div class="categories-checkboxes">
+                <?php if (!empty($cat_error)) { ?>
+                    <div class="has-error">
+                        <span class="help-block"><strong><?php echo $cat_error; ?></strong></span>
+                    </div>
+                <?php } ?>
+                <?php echo $html ?>
+            </div>
         </div>
     </div>
 

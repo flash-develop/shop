@@ -180,7 +180,6 @@ class Products extends CI_Controller {
 			}
 
 		if (!$is_valid) {
-			
 			$id = $post['id'];
 			$data['post'] = $post;
 			$data['upload_error'] = $upload_error;
@@ -196,9 +195,8 @@ class Products extends CI_Controller {
 		redirect('products');
 	}
 
-		public function prepareHtmlForCategoriesCheckboxes($categories, $class_name, $product_cat)
+	public function prepareHtmlForCategoriesCheckboxes($categories, $class_name, $product_cat)
 	{
-
 		$checked = '';
 		$html = '<ul class="'.$class_name.'">';
 		foreach ($categories as $category) {

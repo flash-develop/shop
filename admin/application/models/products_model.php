@@ -67,7 +67,7 @@ class Products_model extends CI_Model {
 		$q .= " GROUP BY products.id";
 
 		$q .= " LIMIT {$offset}, {$items_per_page}";
-		//var_dump($q);exit;
+
 		$query = $this->db->query($q);
 		$result = $query->result();
 

@@ -117,7 +117,7 @@ class Products extends CI_Controller {
 		$files = $_FILES['userfile'];
 
 		if (!$files['name']['0']) {
-			return;
+			return [null, $images];
 		}
 
         foreach ($files['name'] as $key => $image) {
@@ -169,18 +169,23 @@ class Products extends CI_Controller {
 		list($upload_error, $file_names) = $this->uploading();
 
 		$categories = $this->categories_model->getCategories();
-		$product_cat = $this->categories_model->getProductCategoriesInUpdate($data['product']);
-		$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category', $product_cat);
 
 		$is_valid = $this->validation($upload_error);
 
 		if (!isset($post['categories'])) {
-				$data['cat_error'] = 'Необходимо выбрать категорию';
-				$is_valid = false;
-			}
+			$data['cat_error'] = 'Необходимо выбрать категорию';
+			$is_valid = false;
+		}
 
 		if (!$is_valid) {
 			$id = $post['id'];
+
+			if (isset($post['categories'])) {
+				$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category', $post['categories']);
+			} else {
+				$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category', []);
+			}
+
 			$data['post'] = $post;
 			$data['upload_error'] = $upload_error;
 			$data['js_file'] = 'products';
@@ -197,17 +202,17 @@ class Products extends CI_Controller {
 
 	public function prepareHtmlForCategoriesCheckboxes($categories, $class_name, $product_cat)
 	{
-		$checked = '';
+		
 		$html = '<ul class="'.$class_name.'">';
 		foreach ($categories as $category) {
-
+			$checked = '';
 			foreach ($product_cat as $each_cat) {
 				if ($each_cat == $category['id'])
 					$checked = 'checked';
 			}
 
 			$html .= '<li><label><input ' . $checked . ' name="categories[]" value="' . $category['id'] . '" type="checkbox">' . $category['title'] . '</label></li>'; 
-			$checked = '';
+
 			if (count($category['child_categories'])) {
 				$html .= $this->prepareHtmlForCategoriesCheckboxes($category['child_categories'], 'child_category', $product_cat);
 			}

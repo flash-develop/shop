@@ -26,12 +26,29 @@ class Categories_model extends CI_Model {
 			$q = "SELECT * 
 			FROM products_categories
 			LEFT JOIN categories ON products_categories.category_id = categories.id 
-			WHERE product_id = '{$each_product->product_id}'";
+			WHERE product_id = '{$each_product->id}'";
 
 			$query = $this->db->query($q);
 			$products[$key]->categories = $query->result();
 		}
 		return $products;
+	}
+
+	public function getProductCategoriesInUpdate($products)
+	{
+			$q = "SELECT * 
+			FROM products_categories
+			LEFT JOIN categories ON products_categories.category_id = categories.id 
+			WHERE product_id = '{$products->id}'";
+
+			$query = $this->db->query($q);
+			$products_categories = $query->result();
+
+		
+		foreach ($products_categories as $each_cat) {
+			$cat_id[] = $each_cat->id;
+		}
+		return $cat_id;
 	}
 
 	public function getCategories($parent_id = '') { //default values

@@ -57,7 +57,7 @@ class Products_model extends CI_Model {
 	{
 		$offset = ($page - 1) * $items_per_page;
 
-		$q = "SELECT * 
+		$q = "SELECT *, products.id as id
 			FROM products
 			LEFT JOIN products_images ON products.id = products_images.product_id 
 			WHERE ";
@@ -67,7 +67,7 @@ class Products_model extends CI_Model {
 		$q .= " GROUP BY products.id";
 
 		$q .= " LIMIT {$offset}, {$items_per_page}";
-		//var_dump($q);exit;
+
 		$query = $this->db->query($q);
 		$result = $query->result();
 
@@ -122,6 +122,7 @@ class Products_model extends CI_Model {
 	{
 		$q = "SELECT *
 			FROM products
+			LEFT JOIN products_categories ON products.id = products_categories.product_id
 			WHERE id = '{$id}'";
 
 		$query = $this->db->query($q);

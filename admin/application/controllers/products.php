@@ -145,51 +145,13 @@ class Products extends CI_Controller {
 		$id = $this->uri->segment(3);
 		$data['product'] = $this->products_model->getProduct($id);
 
-		$product_cat = $this->categories_model->getProductCategoriesInUpdate($data['product']);
-
 		$categories = $this->categories_model->getCategories();
+		$product_cat = $this->categories_model->getProductCategoriesInUpdate($data['product']);
 		$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category', $product_cat);
 		$data['js_file'] = 'products';
 		$data['page'] = 'products/update';
 		$this->load->view('main_tpl', $data);
 	}
-
-	public function prepareHtmlForCategoriesCheckboxes($categories, $class_name, $product_cat)
-	{
-		$checked = '';
-		$html = '<ul class="'.$class_name.'">';
-		foreach ($categories as $category) {
-
-			foreach ($product_cat as $each_cat) {
-				if ($each_cat == $category['id'])
-					$checked = 'checked';
-				
-			}
-			$html .= '<li><label><input ' . $checked . ' name="categories[]" value="' . $category['id'] . '" type="checkbox">' . $category['title'] . '</label></li>'; 
-			if (count($category['child_categories'])) {
-				$html .= $this->prepareHtmlForCategoriesCheckboxes($category['child_categories'], 'child_category', $product_cat);
-			}
-		}
-		$html .= '</ul>';
-		return $html;
-	}
-
-	/*public function prepareHtmlForCategoriesCheckboxes($categories, $class_name, $category_id)
-	{	
-		$checked = '';
-		$html = '<ul class="'.$class_name.'">';
-		foreach ($categories as $category) {
-			if ($category_id = $category['id']) {
-				$checked = 'checked';
-			}
-			$html .= '<li><label><input ' . $checked . ' name="categories[]" value="' . $category['id'] . '" type="checkbox">' . $category['title'] . '</label></li>'; 
-			if (count($category['child_categories'])) {
-				$html .= $this->prepareHtmlForCategoriesCheckboxes($category['child_categories'], 'child_category', $category_id);
-			}
-		}
-		$html .= '</ul>';
-		return $html;
-	}*/
 
 	public function change()
 	{
@@ -203,7 +165,8 @@ class Products extends CI_Controller {
 
 		if (!$is_valid) {
 			$categories = $this->categories_model->getCategories();
-			$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category');
+			$product_cat = $this->categories_model->getProductCategoriesInUpdate($data['product']);
+			$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category', $product_cat);
 			$id = $post['id'];
 			$data['post'] = $post;
 			$data['upload_error'] = $upload_error;
@@ -217,6 +180,28 @@ class Products extends CI_Controller {
 
 		$this->products_model->changeProduct($post);
 		redirect('products');
+	}
+
+		public function prepareHtmlForCategoriesCheckboxes($categories, $class_name, $product_cat)
+	{
+
+		$checked = '';
+		$html = '<ul class="'.$class_name.'">';
+		foreach ($categories as $category) {
+
+			foreach ($product_cat as $each_cat) {
+				if ($each_cat == $category['id'])
+					$checked = 'checked';
+			}
+
+			$html .= '<li><label><input ' . $checked . ' name="categories[]" value="' . $category['id'] . '" type="checkbox">' . $category['title'] . '</label></li>'; 
+			$checked = '';
+			if (count($category['child_categories'])) {
+				$html .= $this->prepareHtmlForCategoriesCheckboxes($category['child_categories'], 'child_category', $product_cat);
+			}
+		}
+		$html .= '</ul>';
+		return $html;
 	}
 
 	public function validation($upload_error)

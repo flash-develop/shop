@@ -67,7 +67,7 @@ class Products extends CI_Controller {
 	public function create()
 	{
 		$categories = $this->categories_model->getCategories();
-		$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category');
+		$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category', []);
 
 		$data['js_file'] = 'products';
 		$data['page'] = 'products/create';
@@ -82,7 +82,14 @@ class Products extends CI_Controller {
 
 		$is_valid = $this->validation($upload_error);
 
+		if (!isset($post['categories'])) {
+				$data['cat_error'] = 'Необходимо выбрать категорию';
+				$is_valid = false;
+			}
+
 		if (!$is_valid) {
+			$categories = $this->categories_model->getCategories();
+			$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category', []);
 			$data['upload_error'] = $upload_error;	
 			$data['js_file'] = 'products';
 			$data['page'] = 'products/create';
@@ -161,12 +168,15 @@ class Products extends CI_Controller {
 		$data['product'] = $this->products_model->getProduct($id);
 		list($upload_error, $file_names) = $this->uploading();
 
+		$categories = $this->categories_model->getCategories();
+		$product_cat = $this->categories_model->getProductCategoriesInUpdate($data['product']);
+
+		$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category', $product_cat);
+
 		$is_valid = $this->validation($upload_error);
 
 		if (!$is_valid) {
-			$categories = $this->categories_model->getCategories();
-			$product_cat = $this->categories_model->getProductCategoriesInUpdate($data['product']);
-			$data['html'] = $this->prepareHtmlForCategoriesCheckboxes($categories, 'parent_category', $product_cat);
+			
 			$id = $post['id'];
 			$data['post'] = $post;
 			$data['upload_error'] = $upload_error;

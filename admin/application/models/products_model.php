@@ -17,7 +17,7 @@ class Products_model extends CI_Model {
 		$q .= implode(' OR ', $this->getFilters($filters));
  
 		$query = $this->db->query($q);
-		$result = $query->row(); // result will return array of objectes, row return just object
+		$result = $query->row(); 
 
 		return $result->items_count;
 	}
@@ -29,7 +29,7 @@ class Products_model extends CI_Model {
 			WHERE 1";
  
 		$query = $this->db->query($q);
-		$result = $query->row(); // result will return array of objectes, row return just object
+		$result = $query->row(); 
 
 		$items_per_page = $this->config->item('items_per_page');
 
@@ -127,9 +127,9 @@ class Products_model extends CI_Model {
 
 		$query = $this->db->query($q);
 		$result = $query->row();
-var_dump($result);exit;
+//var_dump($result);exit;
 		$result->images = $this->files_model->getImages($prod_id);
-
+//
 		return $result;
 	}
 

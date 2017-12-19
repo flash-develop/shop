@@ -5,16 +5,9 @@
         <div class="text-center-margin-bottom margin-10">
             <button type="button" class="add-btn btn btn-primary">Добавить категорию</button>
         </div>
-        <div id="sortable">
-            <?php echo $html; ?>
-        </div>
+        <?php echo $html; ?>
     </div>
 </div>
-
-<style type="text/css">
-    ul { min-height:15px; }
-    li { width: 250px; }
-</style>
 
 
 <form method="post">
@@ -62,14 +55,6 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-  
-        $("#sortable ul").sortable({
-                connectWith: "#sortable ul",
-                placeholder: "ui-state-highlight"
-        });
-
-
-
 
       $(".edit-category").click(function() {
         

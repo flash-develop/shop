@@ -118,20 +118,35 @@ class Products_model extends CI_Model {
 		return true;
 	}
 
-	function getProduct($id)
+	function getProduct($prod_id)
+	{
+		$q = "SELECT *
+			FROM products_categories
+			INNER JOIN products ON products.id = products_categories.product_id
+			WHERE products.id = '{$prod_id}'";
+
+		$query = $this->db->query($q);
+		$result = $query->row();
+var_dump($result);exit;
+		$result->images = $this->files_model->getImages($prod_id);
+
+		return $result;
+	}
+
+	/*function getProduct($prod_id)
 	{
 		$q = "SELECT *
 			FROM products
 			LEFT JOIN products_categories ON products.id = products_categories.product_id
-			WHERE id = '{$id}'";
+			WHERE products.id = '{$prod_id}'";
 
 		$query = $this->db->query($q);
 		$result = $query->row();
-		//var_dump($result);exit;
-		$result->images = $this->files_model->getImages($id);
+//var_dump($result);exit;
+		$result->images = $this->files_model->getImages($prod_id);
 
 		return $result;
-	}
+	}*/
 
 	public function changeProduct($post)
 	{

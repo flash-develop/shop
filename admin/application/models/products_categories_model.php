@@ -10,6 +10,8 @@ class Products_categories_model extends CI_Model {
 
 	public function insert($categories, $product_id)
 	{
+		//var_dump($categories);
+		//var_dump($product_id);exit;
 		$q = "DELETE FROM products_categories WHERE product_id = '{$product_id}'";
 		$this->db->query($q);
 		

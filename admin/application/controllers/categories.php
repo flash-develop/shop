@@ -20,7 +20,7 @@ class Categories extends CI_Controller {
 	{
 		$categories = $this->categories_model->getCategories();
 
-		$data['html'] = '<div id="sortable">'.$this->prepareHtmlForCategoriesList($categories, 'parent_category').'</div>';
+		$data['html'] = $this->prepareHtmlForCategoriesList($categories, 'parent_category');
 
 		$data['htmlSelect'] = $this->prepareHtmlForCategoriesSelect($categories);
 

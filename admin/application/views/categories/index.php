@@ -112,7 +112,7 @@
         });
       });
 
-       $(".add-btn").click(function() {
+    $(".add-btn").click(function() {
         $('#category-select [value=0]').attr('selected', 'selected');
         $('#title, #description').attr('value', '');
         $('form').attr('action', base_url + 'categories/create');

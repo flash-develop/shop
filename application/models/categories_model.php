@@ -26,7 +26,7 @@ class Categories_model extends CI_Model {
 			$q = "SELECT * 
 			FROM products_categories
 			LEFT JOIN categories ON products_categories.category_id = categories.id 
-			WHERE product_id = '{$each_product->id}'";
+			WHERE product_id = '{$each_product->product_id}'";
 
 			$query = $this->db->query($q);
 			$products[$key]->categories = $query->result();

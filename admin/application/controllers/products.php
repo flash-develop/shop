@@ -26,7 +26,7 @@ class Products extends CI_Controller {
 		$config["reuse_query_string"] = true;
 		$config["page_query_string"] = true;
 		$config["query_string_segment"] = 'page';
-		$config["per_page"] = 5;
+		$config["per_page"] = 10;
 		$config['use_page_numbers'] = TRUE;
 		$config['num_links'] = $total_row;
 		$config['cur_tag_open'] = '&nbsp;<li><a class="current">';
@@ -46,7 +46,7 @@ class Products extends CI_Controller {
 			$page = $data['filters']['page'];
 		}
 		$products = $this->products_model->getAll($data['filters'], $config["per_page"], $page);
-
+//var_dump($products);exit;
 		$data['products'] = $this->categories_model->getProductCategories($products);
 
 		$str_links = $this->pagination->create_links();
@@ -150,6 +150,7 @@ class Products extends CI_Controller {
 	public function update() 
 	{
 		$id = $this->uri->segment(3);
+
 		$data['product'] = $this->products_model->getProduct($id);
 
 		$categories = $this->categories_model->getCategories();
@@ -164,7 +165,7 @@ class Products extends CI_Controller {
 	{
 		$post = $this->input->post();
 		$id = $post['id'];
-
+//var_dump($post);exit;
 		$data['product'] = $this->products_model->getProduct($id);
 		list($upload_error, $file_names) = $this->uploading();
 

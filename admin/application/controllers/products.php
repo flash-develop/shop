@@ -211,7 +211,7 @@ class Products extends CI_Controller {
 				if ($each_cat == $category['id'])
 					$checked = 'checked';
 			}
-
+			
 			$html .= '<li><label><input ' . $checked . ' name="categories[]" value="' . $category['id'] . '" type="checkbox">' . $category['title'] . '</label></li>'; 
 
 			if (count($category['child_categories'])) {

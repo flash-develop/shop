@@ -17,6 +17,7 @@ class Categories_model extends CI_Model {
 
 		$query = $this->db->query($q);
 		$result = $query->row();
+
 		return $result;
 	}
 
@@ -81,8 +82,36 @@ class Categories_model extends CI_Model {
 		return $categories;
 	}
 
+	function getIdOfChildCategories($parent_id = '')
+	{
+		$where = 'parent_id IS NULL';
+		if (!$parent_id) {
+			return;
+		} 
+		$where = "parent_id = '{$parent_id}'";
+		$q = "SELECT id FROM categories WHERE {$where}";
+
+		$query = $this->db->query($q);
+		$result = $query->result();
+
+		foreach ($result as $each_category) {
+			$child_cat[] = $each_category->id;
+		}
+
+		return $child_cat;
+	}
+
 	function delete($id)
 	{
+		$default_category = '28';
+
+		$q_default = "UPDATE categories 
+				SET 
+				parent_id = '{$default_category}'
+				WHERE parent_id = '{$id}'
+			";
+		$this->db->query($q_default);
+
 		$q = "DELETE FROM categories WHERE id = '{$id}'";
 		$this->db->query($q);
 		return true;
@@ -91,7 +120,6 @@ class Categories_model extends CI_Model {
 
 	function update($post)
 	{
-
 		$set = 'parent_id = DEFAULT';
 
 		if ($post['parent_id']) {

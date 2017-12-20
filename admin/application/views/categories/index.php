@@ -78,10 +78,15 @@
                 } else {
                     $('#category-select [value='+response.category.parent_id+']').attr('selected', 'selected');
                 }
+                $.each(response.child_categories, function( key, value ) {
+                  $('#category-select [value='+ value +']').attr('disabled', 'disabled');
+                });
+                $('#category-select [value='+ id +']').attr('disabled', 'disabled');
                 $('#category_id').attr('value', id);
                 $('form').attr('action', base_url + 'categories/update');
                 $('.preloader').hide();
                 $("#myModal").modal('show');
+                console.log(id);
             },
             error: function(response){
                 //$('#e-mail').next('.test-error').html('Сервер не доступен.');

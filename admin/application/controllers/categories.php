@@ -33,13 +33,21 @@ class Categories extends CI_Controller {
 		$html = '<ul class="list-group '.$class_name.'">';
 		
 		foreach ($categories as $category) {
+			
 			$glyphs = 	'<a cat_id="' . $category['id'] . '" class="color-black edit-category" href="#" style="text-decoration: none">
 						<span class="list-group-addon glyphicon glyphicon-pencil"></span>
 					</a>
 					<a cat_id="' . $category['id'] . '" class="delete-category color-black" href="#" style="text-decoration: none">
 						<span class="list-group-addon glyphicon glyphicon-remove"></span>
 					</a>';
-			$html .= '<li class="list-group-item">' . $glyphs . $category['title'] . '</li>'; 
+			if ($category['id'] == '28') {
+				$glyphs = 	'<a cat_id="' . $category['id'] . '" class="color-black edit-category" href="#" style="text-decoration: none">
+						<span class="list-group-addon glyphicon glyphicon-pencil"></span>
+					</a>';
+				$html .= '<li class="list-group-item" style="color: red;">' . $glyphs . '<b>' . $category['title'] . '</b>' . '</li>';
+			} else {
+				$html .= '<li class="list-group-item">' . $glyphs . $category['title'] . '</li>';
+			}
 			if (count($category['child_categories'])) {
 				$html .= $this->prepareHtmlForCategoriesList($category['child_categories'], 'child_category');
 			}
@@ -69,6 +77,7 @@ class Categories extends CI_Controller {
 
 		$return_data = new stdClass();
 		$return_data->category = $this->categories_model->getCategory($post['id']);
+		$return_data->child_categories = $this->categories_model->getIdOfChildCategories($post['id']);
 		echo json_encode($return_data); 
 	}
 

@@ -132,3 +132,20 @@ ul.child_category {
 .border-category {
 	border: 1px solid;
 }
+
+.categories-list {
+	text-decoration: none;
+}
+
+.border-top {
+	border-bottom: 2px solid;
+	border-color: gold;
+}
+
+.padding-bottom-10 {
+	padding-bottom: 10px;
+}
+
+.color-grey {
+	color: #5a5a5a;
+}

@@ -37,7 +37,7 @@ class Categories_model extends CI_Model {
 	}
 
 	public function getProductCategoriesInUpdate($products)
-	{//var_dump($products);exit;
+	{
 			$q = "SELECT * 
 			FROM products_categories
 			LEFT JOIN categories ON products_categories.category_id = categories.id 
@@ -45,7 +45,6 @@ class Categories_model extends CI_Model {
 
 			$query = $this->db->query($q);
 			$products_categories = $query->result();
-//var_dump($products_categories);exit;
 		
 		foreach ($products_categories as $each_cat) {
 			$cat_id[] = $each_cat->id;
@@ -84,20 +83,30 @@ class Categories_model extends CI_Model {
 
 	function getIdOfChildCategories($parent_id = '')
 	{
-		$where = 'parent_id IS NULL';
-		if (!$parent_id) {
-			return;
-		} 
-		$where = "parent_id = '{$parent_id}'";
-		$q = "SELECT id FROM categories WHERE {$where}";
+		$q = "SELECT id FROM categories WHERE parent_id = {$parent_id}";
 
 		$query = $this->db->query($q);
 		$result = $query->result();
+
+		if (!$result) {
+			return NULL;
+		}
 
 		foreach ($result as $each_category) {
 			$child_cat[] = $each_category->id;
 		}
 
+		foreach ($child_cat as $each_child_cat) {
+			$q = "SELECT id FROM categories WHERE parent_id = {$each_child_cat}";
+			$query = $this->db->query($q);
+			$result = $query->row();
+
+			if ($result) {
+				$child_cat[] = $result->id;
+			} else {
+				continue;
+			}
+		}
 		return $child_cat;
 	}
 

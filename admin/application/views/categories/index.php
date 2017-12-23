@@ -73,6 +73,7 @@
             success: function(response){
                 $('#title').attr('value', response.category.title);
                 $('#description').attr('value', response.category.description);
+                $('#category-select [disabled]').removeAttr('disabled');
                 if (!response.category.parent_id) {
                     $('#category-select [value=0]').attr('selected', 'selected');
                 } else {

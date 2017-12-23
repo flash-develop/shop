@@ -11,7 +11,8 @@
     <title>StavSklad.ru</title>
 
     <link href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>css/shop-homepage.css" rel="stylesheet">
+    <!--<link href="<?php echo base_url(); ?>css/shop-homepage.css" rel="stylesheet">-->
+    <link href="<?php echo base_url(); ?>css/main_css.css" rel="stylesheet">
 
     <script type="text/javascript">
       var base_url = '<?php echo base_url(); ?>';
@@ -24,26 +25,16 @@
   </head>
 
   <body>
-    <?php  $this->load->view('menu'); ?>
+    <div>
+        <?php  $this->load->view('menu'); ?>
+    </div>
     
-
-    <!-- Page Content -->
     <div class="container">
 
       <div class="row">
-
-        <div class="col-lg-3">
-
-          <h1 class="my-4">Shop Name</h1>
-          <div class="list-group">
-            <a href="#" class="list-group-item">Category 1</a>
-            <a href="#" class="list-group-item">Category 2</a>
-            <a href="#" class="list-group-item">Category 3</a>
-          </div>
-
-        </div>
+        <?php  $this->load->view('categories'); ?>
         <!-- /.col-lg-3 -->
-
+        
         <div class="col-lg-9">
 
           <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">

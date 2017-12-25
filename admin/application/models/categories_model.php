@@ -2,6 +2,8 @@
 
 class Categories_model extends CI_Model {
 
+	private $category_ids = array();
+
 	function __construct() 
 	{ 
 		parent::__construct(); 
@@ -81,33 +83,18 @@ class Categories_model extends CI_Model {
 		return $categories;
 	}
 
-	function getIdOfChildCategories($parent_id = '')
+	function getIdOfChildCategories($parent_id)
 	{
 		$q = "SELECT id FROM categories WHERE parent_id = {$parent_id}";
 
 		$query = $this->db->query($q);
-		$result = $query->result();
+		$categories = $query->result();
 
-		if (!$result) {
-			return NULL;
+		foreach ($categories as $category) {
+			$this->category_ids[] = $category->id;
+			$this->getIdOfChildCategories($category->id);
 		}
-
-		foreach ($result as $each_category) {
-			$child_cat[] = $each_category->id;
-		}
-
-		foreach ($child_cat as $each_child_cat) {
-			$q = "SELECT id FROM categories WHERE parent_id = {$each_child_cat}";
-			$query = $this->db->query($q);
-			$result = $query->row();
-
-			if ($result) {
-				$child_cat[] = $result->id;
-			} else {
-				continue;
-			}
-		}
-		return $child_cat;
+		return $this->category_ids;
 	}
 
 	function delete($id)

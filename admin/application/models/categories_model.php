@@ -81,7 +81,7 @@ class Categories_model extends CI_Model {
 		return $categories;
 	}
 
-	function getIdOfChildCategories($parent_id = '')
+	function getIdOfChildCategories($parent_id)
 	{
 		$q = "SELECT id FROM categories WHERE parent_id = {$parent_id}";
 

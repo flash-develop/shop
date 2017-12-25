@@ -74,6 +74,7 @@
                 $('#title').attr('value', response.category.title);
                 $('#description').attr('value', response.category.description);
                 $('#category-select [disabled]').removeAttr('disabled');
+                $('#category-select option').attr('selected', false);
                 if (!response.category.parent_id) {
                     $('#category-select [value=0]').attr('selected', 'selected');
                 } else {
@@ -120,6 +121,7 @@
 
     $(".add-btn").click(function() {
         $('#category-select [value=0]').attr('selected', 'selected');
+        $('#category-select option').attr('disabled', false);
         $('#title, #description').attr('value', '');
         $('form').attr('action', base_url + 'categories/create');
         $("#myModal").modal('show');

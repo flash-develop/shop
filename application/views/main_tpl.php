@@ -11,7 +11,7 @@
     <title>StavSklad.ru</title>
 
     <link href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!--<link href="<?php echo base_url(); ?>css/product_css.css" rel="stylesheet">-->
+    <link href="<?php echo base_url(); ?>css/product_css.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>css/main_css.css" rel="stylesheet">
 
     <script type="text/javascript">
@@ -28,25 +28,15 @@
     </div>
     
     <div class="container">
-
-      <div class="row">
-        <!-- /.col-lg-3 LEFT CATEGORIES BLOCK -->
-        <?php  $this->load->view('categories'); ?>
-        
-        <!-- /.col-lg-3 CENTER CONTENT -->
-        <div class="col-lg-9">
-            <div class="min-height-1000">
-                <div class="scrolling-center">
-                    <?php  $this->load->view($page); ?>
-                </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <?php  $this->load->view('categories'); ?>
             </div>
+        <div class="col-lg-9">
+            <?php  $this->load->view($page); ?>
         </div>
-
       </div>
-      <!-- /.row -->
-
     </div>
-    <!-- /.container -->
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">

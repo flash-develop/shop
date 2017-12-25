@@ -2,9 +2,8 @@
     <div class="content-wrapper">	
 		<div class="item-container">	
 			<div class="container">	
-				<div class="col-md-12">
+
 					<div class="product col-md-3 service-image-left">
-                    
 						<center>
 							<img id="item-display" src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png" alt=""></img>
 						</center>
@@ -23,7 +22,7 @@
 							</a>
 						</center>
 					</div>
-				</div>
+
 					
 				<div class="col-md-7">
 					<div class="product-title">Corsair GS600 600 Watt PSU</div>

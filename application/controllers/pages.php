@@ -12,6 +12,8 @@ class Pages extends CI_Controller {
 	{
 		$categories = $this->categories_model->getCategories();
 		$data['categories'] = $this->prepareHtmlForCategoriesList($categories, 'parent_category');
+//var_dump($data['categories']);exit;		
+//$data['page'] = 'pages/index';
 		$this->load->view('main_tpl', $data);
 	}
 

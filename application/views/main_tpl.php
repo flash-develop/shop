@@ -11,7 +11,7 @@
     <title>StavSklad.ru</title>
 
     <link href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!--<link href="<?php echo base_url(); ?>css/shop-homepage.css" rel="stylesheet">-->
+    <!--<link href="<?php echo base_url(); ?>css/product_css.css" rel="stylesheet">-->
     <link href="<?php echo base_url(); ?>css/main_css.css" rel="stylesheet">
 
     <script type="text/javascript">
@@ -35,9 +35,9 @@
         
         <!-- /.col-lg-3 CENTER CONTENT -->
         <div class="col-lg-9">
-            <div style="min-height: 1000px;">
+            <div class="min-height-1000">
                 <div class="scrolling-center">
-                    <?php  $this->load->view('content'); ?>
+                    <?php  $this->load->view($page); ?>
                 </div>
             </div>
         </div>

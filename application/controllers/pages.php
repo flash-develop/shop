@@ -12,8 +12,8 @@ class Pages extends CI_Controller {
 	{
 		$categories = $this->categories_model->getCategories();
 		$data['categories'] = $this->prepareHtmlForCategoriesList($categories, 'parent_category');
-//var_dump($data['categories']);exit;		
-//$data['page'] = 'pages/index';
+	
+		$data['page'] = 'content/default';
 		$this->load->view('main_tpl', $data);
 	}
 
@@ -30,5 +30,14 @@ class Pages extends CI_Controller {
 		$html .= '</ul>';
 		
 		return $html;
+	}
+
+	public function product()
+	{
+		$categories = $this->categories_model->getCategories();
+		$data['categories'] = $this->prepareHtmlForCategoriesList($categories, 'parent_category');
+		$data['page'] = 'content/product';
+
+		$this->load->view('main_tpl', $data);
 	}
 }

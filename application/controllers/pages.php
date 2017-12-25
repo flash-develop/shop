@@ -10,10 +10,32 @@ class Pages extends CI_Controller {
  
     public function index()
 	{
+		$data['filters'] = $this->input->get();
+		$this->load->library('pagination');
+		
+		$this->config->load('pagination', TRUE);
+		$config = $this->config->config['pagination'];
+		$config['base_url'] = base_url() . 'pages/index';
+		$total_row = $this->products_model->getCount($data['filters']);
+		$config["total_rows"] = $total_row;
+		$config['num_links'] = $total_row;
+		$this->pagination->initialize($config);
+
+		$page = 1;
+		if(!empty($data['filters']['page'])){
+			$page = $data['filters']['page'];
+		}
+		$products = $this->products_model->getAll($data['filters'], $config["per_page"], $page);
+
+		$data['products'] = $this->categories_model->getProductCategories($products);
+//var_dump($data['products']);exit;
+		$str_links = $this->pagination->create_links();
+		$data["links"] = explode('&nbsp;', $str_links);
+
 		$categories = $this->categories_model->getCategories();
 		$data['categories'] = $this->prepareHtmlForCategoriesList($categories, 'parent_category');
-	
-		$data['page'] = 'content/default';
+		
+		$data['page'] = 'content/home';
 		$this->load->view('main_tpl', $data);
 	}
 

@@ -123,7 +123,7 @@ class Products_model extends CI_Model {
 		$q = "SELECT *
 			FROM products
 			LEFT JOIN products_categories ON products.id = products_categories.product_id
-			WHERE id = '{$id}'";
+			WHERE products.id = '{$id}'";
 
 		$query = $this->db->query($q);
 		$result = $query->row();

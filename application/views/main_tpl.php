@@ -23,9 +23,8 @@
   </head>
 
   <body>
-    <div>
-        <?php  $this->load->view('menu'); ?>
-    </div>
+    <?php  $this->load->view('menu'); ?>
+
     
     <div class="container">
         <div class="row">

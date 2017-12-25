@@ -135,6 +135,12 @@ ul.child_category {
 
 .categories-list {
 	text-decoration: none;
+	color: black;
+}
+
+.categories-list:hover {
+	
+	color: black;
 }
 
 .border-top {
@@ -150,5 +156,11 @@ ul.child_category {
 	color: #5a5a5a;
 }
 
+.width-auto {
+	width: auto;
+}
 
+.height-145 {
+	height: 145px;
+}
 

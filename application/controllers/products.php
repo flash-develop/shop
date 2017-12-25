@@ -50,7 +50,7 @@ class Products extends CI_Controller {
 		$data['products'] = $this->categories_model->getProductCategories($products);
 
 		$str_links = $this->pagination->create_links();
-		$data["links"] = explode('&nbsp;',$str_links );
+		$data["links"] = explode('&nbsp;', $str_links);
 
 		$data['page'] = 'products/index';
 		$this->load->view('main_tpl', $data);

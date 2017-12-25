@@ -15,10 +15,7 @@
                     <a class="nav-link" href="#">О магазине</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="#">Контакты</a>
                 </li>
             </ul>
         </div>

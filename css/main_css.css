@@ -149,3 +149,17 @@ ul.child_category {
 .color-grey {
 	color: #5a5a5a;
 }
+
+.scrolling-center {
+	min-height: 1000px;
+	position: absolute;
+    top:0px;
+    bottom:0px;
+    overflow-x:hidden;
+    overflow-y:scroll;  
+    }
+
+@media screen and (max-width: 980px) {
+   .scrolling-center {
+      position: relative;
+   }

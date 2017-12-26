@@ -156,6 +156,8 @@ class Products_model extends CI_Model {
 		return true;
 	}
 
+	// TODO from SB обрати внимание, что эта функция должна возвращять все продукты из категории которую выбали
+	// и из всех дочерних категорий тоже (в не зависимости сколько дочерних вложений катигорий будет)
 	public function getProductsFromCategory($id)
 	{
 		$q = "SELECT product_id

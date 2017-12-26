@@ -120,6 +120,8 @@ class Products_model extends CI_Model {
 
 	function getProduct($prod_id)
 	{
+		// TODO from SB если берешь продукт - то таблица из которой берешь должна быть продукты, а не категории
+		// пример фронт таже фунткция, в той же модели как это
 		$q = "SELECT *
 			FROM products_categories
 			INNER JOIN products ON products.id = products_categories.product_id

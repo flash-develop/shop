@@ -28,7 +28,7 @@ class Pages extends CI_Controller {
 		$products = $this->products_model->getAll($data['filters'], $config["per_page"], $page);
 
 		$data['products'] = $this->categories_model->getProductCategories($products);
-//var_dump($data['products']);exit;
+
 		$str_links = $this->pagination->create_links();
 		$data["links"] = explode('&nbsp;', $str_links);
 

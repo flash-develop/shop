@@ -19,7 +19,7 @@ class Product extends CI_Controller {
 		$data['categories'] = $this->prepareHtmlForCategoriesList($categories, 'parent_category');
 
 		$data['product'] = $this->products_model->getProduct($id);
-
+//var_dump($data['product']);exit();
 		$data['page'] = 'content/product';
 		$this->load->view('main_tpl', $data);
 	}

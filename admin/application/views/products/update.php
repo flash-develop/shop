@@ -102,7 +102,9 @@
 <div class="row">
     <?php foreach ($product->images as $each_image) {?>
         <div class="col-sm-2 position-relative">
-            <a data-lightbox="product-image" href="<?php echo base_url(); ?>images/<?php echo $each_image->img_name; ?>"><img class="position-relative img-size img-style" src="<?php echo base_url(); ?>images/<?php echo $each_image->img_name; ?>" style="height: 100px;" ></a>
+            <a data-lightbox="product-image" href="<?php echo base_url(); ?>images/<?php echo $each_image->img_name; ?>">
+              <img class="position-relative img-size img-style" src="<?php echo base_url(); ?>images/<?php echo $each_image->img_name; ?>" style="height: 100px;" >
+            </a>
             <img id="<?php echo $each_image->id; ?>" class="position-relative delete-img" data-toggle="modal" data-target="#myModal" src="<?php echo base_url(); ?>images/delete.png ?>" height="30">
         </div>
     <?php } ?>

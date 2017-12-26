@@ -155,4 +155,24 @@ class Products_model extends CI_Model {
 
 		return true;
 	}
+
+	public function getProductsFromCategory($id)
+	{
+		$q = "SELECT product_id
+			FROM products_categories
+			WHERE category_id = '{$id}'";
+
+		$query = $this->db->query($q);
+		$result = $query->result();
+
+			foreach ($result as $each_product) {
+				$q = "SELECT *
+					FROM products
+					WHERE id = '{$each_product->product_id}'";
+				$query = $this->db->query($q);
+				$products = $query->result();
+			}
+
+		return $products;
+	}
 }

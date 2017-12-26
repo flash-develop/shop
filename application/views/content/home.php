@@ -31,7 +31,7 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                   <div class="card h-100">
                     <div href="#" class="text-center">
-                        <img class="card-img-top height-145 width-auto" height="145" width="auto" src="<?php echo base_url(); ?>images/<?php echo $each_product->img_name; ?>" alt="">
+                        <img class="card-img-top height-145 width-auto" height="145" width="auto" src="<?php echo base_url(); ?>/admin/images/<?php echo $each_product->img_name; ?>" alt="">
                     </div>
                     <div class="card-body">
                       <h4 class="card-title">

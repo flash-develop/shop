@@ -44,7 +44,7 @@ class Pages extends CI_Controller {
 		$html = '<ul class="list-group '.$class_name.'">';
 		
 		foreach ($categories as $category) {
-				$html .= '<a class="categories-list" href="#"><li style="text-decoration: none;">'. $category['title'] . '</li></a>';
+				$html .= '<a class="categories-list" href="'. base_url() . 'categories/' . $category['id'] . '"><li style="text-decoration: none;">'. $category['title'] . '</li></a>';
 			if (count($category['child_categories'])) {
 				$html .= $this->prepareHtmlForCategoriesList($category['child_categories'], 'child_category');
 			}

@@ -2,6 +2,8 @@
 
 class Products_model extends CI_Model {
 
+	private $category_ids = array();
+
 	public function __construct()
     {
         parent::__construct();
@@ -17,7 +19,7 @@ class Products_model extends CI_Model {
 		$q .= implode(' OR ', $this->getFilters($filters));
  
 		$query = $this->db->query($q);
-		$result = $query->row(); // result will return array of objectes, row return just object
+		$result = $query->row(); 
 
 		return $result->items_count;
 	}
@@ -158,28 +160,6 @@ class Products_model extends CI_Model {
 
 	// TODO from SB обрати внимание, что эта функция должна возвращять все продукты из категории которую выбали
 	// и из всех дочерних категорий тоже (в не зависимости сколько дочерних вложений катигорий будет)
-	public function getProductsFromCategory($id)
-	{
-		$q = "SELECT id FROM categories WHERE parent_id = {$id}";
-		$query = $this->db->query($q);
-		$result = $query->result();
-
-		$categories = array();
-		foreach ($result as $category) {
-			//$categories[] = $category->id;
-//var_dump($category);exit();
-			$q_1 = "SELECT * FROM products_categories WHERE category_id = {$category->id}";
-			$query = $this->db->query($q_1);
-			$res = $query->result();
-		}
-		//var_dump($res);exit();
-	return $res;
-
-		
-
-		
-		var_dump($categories);exit;
-	}
 
 	function getIdOfChildCategories($parent_id)
 	{
@@ -194,4 +174,26 @@ class Products_model extends CI_Model {
 		}
 		return $this->category_ids;
 	}
+
+	function getProductsByCategories($parent_id)
+	{
+		$this->category_ids[] = $parent_id;
+		//$categories_ids = $this->getIdOfChildCategories($parent_id);
+
+		$categories_id = implode(',', $this->getIdOfChildCategories($parent_id));
+
+		$q = "SELECT *, products.id as id
+			FROM products
+			INNER JOIN products_categories ON products.id = products_categories.product_id
+			LEFT JOIN products_images ON products.id = products_images.product_id 
+			WHERE products_categories.category_id IN ({$categories_id}) 
+			GROUP BY products.id";
+
+
+		$query = $this->db->query($q);
+		$result = $query->result();
+
+		return $result;
+	}
+
 }

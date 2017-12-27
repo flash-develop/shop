@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-5 margin-10">
+		<h3 class="text-center">Наши контакты:</h3>
 		<img src="<?php echo base_url(); ?>admin/images/map.jpg" style="max-width: 350px;">
-	    <h3 class="text-center">Наши контакты:</h3>
 	    <h5>Адресс:</h5> г. Ставрополь, ул. Такая-то, дом такой-то
 	    <h5>Телефон:</h5> 222-222-22
 	    <h5> Еще что-нибудь:</h5> Тут еще что-нибудь
@@ -9,9 +9,9 @@
 
     
 	<div class="col-md-6 margin-10">
-	    <div class="card border-primary rounded-0">
-	        <div class="card-header p-0">
-	            <div class="bg-primary text-white text-center py-2">
+	    <div class="card border-none rounded-0">
+	        <div class="p-0">
+	            <div class="text-center py-2">
 	                <h3><i class="fa fa-envelope"></i>Напишите нам</h3>
 	            </div>
 	        </div>
@@ -38,7 +38,7 @@
 	            </div>
 
 	            <div class="text-center">
-	                <button class="btn btn-primary btn-block rounded-0 py-2">Отправить</button>
+	                <button class="btn btn-block rounded-0 py-2">Отправить</button>
 	            </div>
 	        </div>
 		</div>

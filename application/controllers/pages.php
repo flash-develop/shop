@@ -35,7 +35,7 @@ class Pages extends CI_Controller {
 		$categories = $this->categories_model->getCategories();
 		$data['categories'] = $this->prepareHtmlForCategoriesList($categories, 'parent_category');
 		
-		$data['page'] = 'content/home';
+		$data['page'] = 'content/products';
 		$this->load->view('main_tpl', $data);
 	}
 

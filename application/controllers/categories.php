@@ -38,9 +38,9 @@ class Categories extends CI_Controller {
 		$categories = $this->categories_model->getCategories();
 		$data['categories'] = $this->prepareHtmlForCategoriesList($categories, 'parent_category');
 
-		$data['products'] = $this->products_model->getProductsFromCategory($id);
+		$data['products'] = $this->products_model->getProductsByCategories($id);
 
-		$data['page'] = 'content/category';
+		$data['page'] = 'content/products';
 		$this->load->view('main_tpl', $data);
 	}
 

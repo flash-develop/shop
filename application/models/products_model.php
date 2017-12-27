@@ -160,21 +160,38 @@ class Products_model extends CI_Model {
 	// и из всех дочерних категорий тоже (в не зависимости сколько дочерних вложений катигорий будет)
 	public function getProductsFromCategory($id)
 	{
-		$q = "SELECT product_id
-			FROM products_categories
-			WHERE category_id = '{$id}'";
-
+		$q = "SELECT id FROM categories WHERE parent_id = {$id}";
 		$query = $this->db->query($q);
 		$result = $query->result();
 
-			foreach ($result as $each_product) {
-				$q = "SELECT *
-					FROM products
-					WHERE id = '{$each_product->product_id}'";
-				$query = $this->db->query($q);
-				$products = $query->result();
-			}
+		$categories = array();
+		foreach ($result as $category) {
+			//$categories[] = $category->id;
+//var_dump($category);exit();
+			$q_1 = "SELECT * FROM products_categories WHERE category_id = {$category->id}";
+			$query = $this->db->query($q_1);
+			$res = $query->result();
+		}
+		//var_dump($res);exit();
+	return $res;
 
-		return $products;
+		
+
+		
+		var_dump($categories);exit;
+	}
+
+	function getIdOfChildCategories($parent_id)
+	{
+		$q = "SELECT id FROM categories WHERE parent_id = {$parent_id}";
+
+		$query = $this->db->query($q);
+		$categories = $query->result();
+
+		foreach ($categories as $category) {
+			$this->category_ids[] = $category->id;
+			$this->getIdOfChildCategories($category->id);
+		}
+		return $this->category_ids;
 	}
 }

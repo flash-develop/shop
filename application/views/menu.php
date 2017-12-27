@@ -6,16 +6,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Главная
-                    <span class="sr-only">(current)</span>
-                    </a>
+                <li class="nav-item <?php echo ($page == 'content/home') ? 'active' : ''; ?>">
+                    <a class="nav-link" href="<?php echo base_url(); ?>">Главная</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">О магазине</a>
+                <li class="nav-item <?php echo ($page == 'content/about') ? 'active' : ''; ?>">
+                    <a class="nav-link" href="<?php echo base_url(); ?>pages/about">О магазине</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Контакты</a>
+                <li class="nav-item <?php echo ($page == 'content/contacts') ? 'active' : ''; ?>">
+                    <a class="nav-link" href="<?php echo base_url(); ?>pages/contacts">Контакты</a>
                 </li>
             </ul>
         </div>

@@ -62,4 +62,22 @@ class Pages extends CI_Controller {
 
 		$this->load->view('main_tpl', $data);
 	}
+
+	public function about()
+	{
+		$categories = $this->categories_model->getCategories();
+		$data['categories'] = $this->prepareHtmlForCategoriesList($categories, 'parent_category');
+		$data['page'] = 'content/about';
+
+		$this->load->view('main_tpl', $data);
+	}
+
+	public function contacts()
+	{
+		$categories = $this->categories_model->getCategories();
+		$data['categories'] = $this->prepareHtmlForCategoriesList($categories, 'parent_category');
+		$data['page'] = 'content/contacts';
+
+		$this->load->view('main_tpl', $data);
+	}
 }

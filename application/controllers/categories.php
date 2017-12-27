@@ -11,7 +11,7 @@ class Categories extends CI_Controller {
     public function index()
 	{
 		$id = $this->uri->segment(2, 0);
-		//var_dump($id);exit();
+
 		if (!$id) {
 			redirect('pages');
 		}
@@ -31,9 +31,6 @@ class Categories extends CI_Controller {
 		if(!empty($data['filters']['page'])){
 			$page = $data['filters']['page'];
 		}
-		//$products = $this->products_model->getAll($data['filters'], $config["per_page"], $page);
-
-		//$data['products'] = $this->categories_model->getProductCategories($products);
 
 		$str_links = $this->pagination->create_links();
 		$data["links"] = explode('&nbsp;', $str_links);
@@ -42,7 +39,7 @@ class Categories extends CI_Controller {
 		$data['categories'] = $this->prepareHtmlForCategoriesList($categories, 'parent_category');
 
 		$data['products'] = $this->products_model->getProductsFromCategory($id);
-//var_dump($data['products']);exit;
+
 		$data['page'] = 'content/category';
 		$this->load->view('main_tpl', $data);
 	}

@@ -11,6 +11,7 @@ class Pages extends CI_Controller {
     public function index()
 	{
 		$data['filters'] = $this->input->get();
+
 		$this->load->library('pagination');
 		
 		$this->config->load('pagination', TRUE);
@@ -30,6 +31,7 @@ class Pages extends CI_Controller {
 		$data['products'] = $this->categories_model->getProductCategories($products);
 
 		$str_links = $this->pagination->create_links();
+
 		$data["links"] = explode('&nbsp;', $str_links);
 
 		$categories = $this->categories_model->getCategories();

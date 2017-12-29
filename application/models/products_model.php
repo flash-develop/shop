@@ -17,7 +17,7 @@ class Products_model extends CI_Model {
 			WHERE ";
 
 		$q .= implode(' OR ', $this->getFilters($filters));
- 
+		
 		$query = $this->db->query($q);
 		$result = $query->row(); 
 
@@ -31,7 +31,7 @@ class Products_model extends CI_Model {
 			WHERE 1";
  
 		$query = $this->db->query($q);
-		$result = $query->row(); // result will return array of objectes, row return just object
+		$result = $query->row();
 
 		$items_per_page = $this->config->item('items_per_page');
 
@@ -158,9 +158,6 @@ class Products_model extends CI_Model {
 		return true;
 	}
 
-	// TODO from SB обрати внимание, что эта функция должна возвращять все продукты из категории которую выбали
-	// и из всех дочерних категорий тоже (в не зависимости сколько дочерних вложений катигорий будет)
-
 	function getIdOfChildCategories($parent_id)
 	{
 		$q = "SELECT id FROM categories WHERE parent_id = {$parent_id}";
@@ -178,7 +175,6 @@ class Products_model extends CI_Model {
 	function getProductsByCategories($parent_id)
 	{
 		$this->category_ids[] = $parent_id;
-		//$categories_ids = $this->getIdOfChildCategories($parent_id);
 
 		$categories_id = implode(',', $this->getIdOfChildCategories($parent_id));
 
